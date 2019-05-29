@@ -1,0 +1,22 @@
+{
+    "name": "meryemeihd/comptabad",
+    "description": "comptabad",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Renaud PLATEL",
+            "email": "renaud.platel@itsoluce.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "itsoluce/my-orm": "dev-master",
+        "phpmailer/phpmailer": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "comptabad": "src/"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+RewriteEngine On
+
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4&param[2]=$5 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4&param[2]=$5&param[3]=$6 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4&param[2]=$5&param[3]=$6&param[4]=$7 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4&param[2]=$5&param[3]=$6&param[4]=$7&param[5]=$8 [L,QSA]
+RewriteRule 	^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ ?controller=$1&view=$2&param[0]=$3&param[1]=$4&param[2]=$5&param[3]=$6&param[4]=$7&param[5]=$8&param[6]=$9 [L,QSA]
