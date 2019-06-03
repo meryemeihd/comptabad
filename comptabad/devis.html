@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title> Comptabad</title>
+        
+        <!-- CSS   -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        
+        <link href="css/style.css" rel="stylesheet">
+        <!-- CSS   -->
+
+        <!--font -->
+        <link href = "https://fonts.googleapis.com/css?family= Open + Sans & display = swap" rel = "stylesheet">
+        <!-- fin du font -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+	
+	<form action="facture.php" method="post">
+  <div>
+    <label for="nom">Numero:</label>
+    <input type="text" id="numero" name="numero">
+  </div>
+
+  <div>
+    <label for="date"> Date:</label>
+    <input type="date" id="date" name="date">
+  </div>
+
+  <div>
+    <label for="message">Message :</label>
+    <textarea id="message" name="user_message"></textarea>
+  </div>
+ 
+  <div class="button">
+    <button type="submit">Envoyer le message</button>
+  </div>
+</form>
+	
+    
+	</body>
+	</html>

@@ -12,9 +12,9 @@ $MyORMBLL = "../BLL/";
 $MyORMDAL = "../DAL/";
 
 //SQL connect for select
-$MyORMSQL = "connection";
+$MyORMSQL = "Connexion";
 //SQL connect for update delete insert (Can manage Master / Slave)
-$MyORMSQL2 = "connection";
+$MyORMSQL2 = "Connexion";
 
 /* ORM configuration */
 $MyORMAUTOGENERATE = true;

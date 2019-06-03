@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title> Comptabad</title>
+        
+        <!-- CSS   -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        
+        <link href="css/style.css" rel="stylesheet">
+        <!-- CSS   -->
+
+        <!--font -->
+        <link href = "https://fonts.googleapis.com/css?family= Open + Sans & display = swap" rel = "stylesheet">
+        <!-- fin du font -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!--header -->
+                
+               <header class="container-fluid header">
+                    <div class="container"> 
+                       <a href ="#" class="logo"> Comptabad </a>
+                              <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		<ul class="nav navbar-nav">
+			<li>
+			<a href="index.html">Accueil</a>
+			</li>
+			<li>
+			<a href="propos.html"> A propos</a>
+			</li>
+			<li>
+			<a href="connexion.html"> Connexion </a>
+                                            </li>
+			<li>
+			<a href="contact.html">Contact</a>
+			</li>
+		</ul>
+                           </div>
+                    </div>
+                   
+            
+        </header>
+        <!-- fin header --> 
+        
+        
+       
+        <section class="container-fluid banner"> 
+       
+               <div class="ban">
+                      <img src="img/badminton.jpg" alt="banniere du site "/>
+               </div>
+            <div class="inner-banner">
+                <h1> Connexion </h1>
+                <button class="btn btn-customer"> Me connecter ! </button>
+            </div>
+            
+        </section>
+
+          <section class="container-fluid connexion"> 
+            <div class=" container">
+               
+                    
+                <h2 id ="connexion">Connexion</h2>
+                <hr class="separator">
+                 <form action="verification.php" method="POST">
+                
+                <label><b>Nom d'utilisateur</b></label>
+                <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required> 
+
+                <label><b>  Mot de passe</b></label>
+                <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+                <input type="submit" id='submit' value='Connexion' >
+            </form>
+        </div>
+          
+        
+        
+        </section>
+        
+        <footer class="container-fluid footer propos">
+        <div class="container"> 
+         
+         <div class="row">
+		
+                                       
+
+             <p> Comptabad </p>
+         </div>
+        </div>
+            
+        </footer>
+
+    </body>
+</html>

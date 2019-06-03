@@ -9,6 +9,8 @@ new MyORM\MyORM();
 
 $Connexion = new MySQL\sql(MySQLServer, MySQLUser, MySQLPassword, MySQLDatabase, MySQLPort, MySQLTransactionMode, MySQLDebug, MySQLCharset);
 
+//Sql connect 
+
 if ( (isset($_GET["controller"])) && (isset($_GET["view"])) )
 {
     /* Controller and View loading */
@@ -20,7 +22,7 @@ if ( (isset($_GET["controller"])) && (isset($_GET["view"])) )
         
         if (method_exists($_GET["controller"],$_GET["view"]))
         {
-            call_user_func(array($_GET["controller"], $_GET["view"]));
+			call_user_func(array($_GET["controller"], $_GET["view"]));
         }
         
     } else {
