@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 require_once __DIR__ . '/../MyConfig/autoload.php'; // Autoload files using MyConfig autoload
+include "view/header/hearder.view.php";
+include "view/bottom/bottom.view.php";
+include "src/Template.php";
 
 //loading la gestion des exceptions
 new MyException\MyException();
