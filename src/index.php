@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 require_once __DIR__ . '/../MyConfig/autoload.php'; // Autoload files using MyConfig autoload
-include "view/header/hearder.view.php";
-include "view/bottom/bottom.view.php";
-include "src/Template.php";
+
+session_start(); //je démarre ma session
+
 
 //loading la gestion des exceptions
 new MyException\MyException();
@@ -25,7 +25,7 @@ if ( (isset($_GET["controller"])) && (isset($_GET["view"])) )
         
         if (method_exists($_GET["controller"],$_GET["view"]))
         {
-			call_user_func(array($_GET["controller"], $_GET["view"]));
+	call_user_func(array($_GET["controller"], $_GET["view"]));
         }
         
     } else {

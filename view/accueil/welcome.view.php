@@ -22,7 +22,21 @@ echo "Welcome";
 <!--Fin du header -->
     <body>
 	
+        <!-- Lien qui enmène vers le test liste -->
 	<a href='/test/liste'>Test</a>
+        <!-- Lien qui enmène vers la page d'authentification --> 
+               <a href='/authentification/verification'> Authentification </a> 
+               <?php
+
+               
+//si on est authentifié alors 
+        if (isset($_SESSION["utilisateur"]))
+    {
+        //lien qui enmène vers la déconnexion 
+        echo  "<a href='/authentification/deconnexion'> Déconnexion </a>";
+         echo  "<a href='/entite/creation'> Entite </a>" ;
+    }
+?>
 
     
  </body>

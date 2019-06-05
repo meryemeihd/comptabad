@@ -3,6 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><?php echo 'COMPTABAD'; ?> </title>
+        <link rel="stylesheet" type="text/css" href="Stylesheet.css" />
     </head>
     <body>
         <div id="wrapper">
@@ -20,7 +21,7 @@
             </nav>
         </div>
         
-        <div id="contennt-area">
+        <div id="content-area">
             <?php echo $Bienvenue; ?>
         </div>    
         
