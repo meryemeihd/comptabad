@@ -6,3 +6,11 @@
  * and open the template in the editor.
  */
 
+class journal
+{
+ public static function regarder () {
+       
+       global $Journal;
+     $Journal = new MyORM\Journal($_GET["param"][0] ?? null);
+ }
+}

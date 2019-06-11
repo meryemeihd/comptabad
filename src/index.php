@@ -1,9 +1,13 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 require_once __DIR__ . '/../MyConfig/autoload.php'; // Autoload files using MyConfig autoload
+//inclure header
+ 
 
 session_start(); //je démarre ma session
 
+//require_once __DIR__ . '/../view/header/header.view.php';
+include (__DIR__ . '/../view/header/header.view.php');
 
 //loading la gestion des exceptions
 new MyException\MyException();
@@ -46,3 +50,8 @@ else
 document.location.href="'.$location.'"
 </SCRIPT>';
 }
+?>
+    </body>
+</html>
+		
+          

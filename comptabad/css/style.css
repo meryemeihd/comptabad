@@ -7,14 +7,6 @@ and open the template in the editor.
     Created on : 31 mai 2019, 15:27:42
     Author     : merye
 */
-
-
-/*font-family: 'Open Sans', sans-serif;*/
-body, html {
-    padding: 0;
-    margin: 0;
-}
-
 body {
     font-family: 'Open Sans', sans-serif;
 }

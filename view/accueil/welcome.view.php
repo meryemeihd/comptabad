@@ -1,14 +1,13 @@
-<?php
-echo "Welcome";
-?>
+
+<!DOCTYPE html!>
 <html>
 <!--header-->
     <head>
         <title> Comptabad</title>
         
         <!-- CSS   -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        
+        <link rel="stylesheet" href="/src/normalize.css">
+        <link rel="stylesheet" href="/src/header.css">
         <link href="css/style.css" rel="stylesheet">
         <!-- CSS   -->
 
@@ -21,21 +20,59 @@ echo "Welcome";
 	
 <!--Fin du header -->
     <body>
-	
-        <!-- Lien qui enmène vers le test liste -->
-	<a href='/test/liste'>Test</a>
-        <!-- Lien qui enmène vers la page d'authentification --> 
-               <a href='/authentification/verification'> Authentification </a> 
-               <?php
 
+	 
+       
+        <!-- Lien qui enmène vers le test liste -->
+	
                
-//si on est authentifié alors 
-        if (isset($_SESSION["utilisateur"]))
-    {
-        //lien qui enmène vers la déconnexion 
-        echo  "<a href='/authentification/deconnexion'> Déconnexion </a>";
-         echo  "<a href='/entite/creation'> Entite </a>" ;
-    }
+                   
+              
+               
+<?php        
+   
+             
+             
+           
+            
+
+                   echo "  <div id='accueil'>
+
+	<div class='tab' id='d_men_action'>
+            <center>
+			<table>
+			
+				<tr>
+                            
+                                
+                                                                                 <th><a href='/facture/nouvelle'>  <img src='https://image.flaticon.com/icons/svg/181/181095.svg' heigth=100 width=100 alt=''/></center><br/>Saisie Dépense  </th>
+					 <th> <a href='/payement/paye'> <img src='https://image.flaticon.com/icons/svg/1573/1573381.svg' height=100 width=100 text-align:center  alt=''/><br/>Saisie Recette</a>  </th>
+                                                                         
+
+					
+				</tr>
+				<tr>
+					 <th> <a href='/journal/regarder'><img src='https://image.flaticon.com/icons/svg/1809/1809639.svg' heigth=100  width=100  alt='' align=middle/><br/>Visualisation du journal</a>  </th>
+					 <th> <a href='index.php?p=u_compte_resultat'><img src='https://image.flaticon.com/icons/svg/1802/1802587.svg' heigth=100 width=100 alt=''/><br/>Visualisation du <br/> Compte de résultat</a>  </th>
+					
+				</tr>
+				<tr>
+					 <th> <a href='/rapprochement/observer'><img src='https://image.flaticon.com/icons/svg/138/138368.svg' heigth=100 width=100  alt=''/><br/>Rapprochement bancaire</a>  </th>
+                                                                                 <th> <a href='index.php?p=perso_action'><img src='https://image.flaticon.com/icons/svg/1802/1802607.svg' heigth=100 width=100  alt=''/> <br/> Bilan</a> </th>
+
+				</tr>
+				<tr>
+				 <th><a href='/utilisateur/personne'><img src='https://image.flaticon.com/icons/svg/1616/1616039.svg' heigth=100 width=100  alt=''/> <br/> Utilisateur</a> </th>
+                                                                 <th><a href='/entite/creation'> <img src='https://image.flaticon.com/icons/svg/1731/1731865.svg' height=100 width=100 text-align:center  alt=''/><br/> Saisir tiers</a>  </th>
+
+				</tr>
+			</table> 
+            </center>
+	</div>
+	
+	
+</div>	";
+    
 ?>
 
     

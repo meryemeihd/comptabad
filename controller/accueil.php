@@ -9,7 +9,7 @@
 class accueil {
     public static function welcome()
     {  
-        echo "ICI";
+      
         
 		if (isset($_GET["param"]))
 		{
@@ -17,9 +17,10 @@ class accueil {
 			print_r($_GET["param"]);
 			echo "</pre>";
 		}
+         
+     
 		
-		
-		//$order = new MyORM\order();
+	//	$order = new MyORM\order();
 		
     }
 }

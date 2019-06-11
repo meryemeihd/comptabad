@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -7,7 +8,7 @@ print_r($Entite);
 echo "</pre>";
  * */
  
-echo $Entite->Parent_TypeEntite->Nom;
+//echo $Entite->Parent_TypeEntite->Nom;
 
 
 
@@ -16,59 +17,61 @@ $Ojb = new MyORM\Exercice();
 $Entite->add_Exercice_Exercice($Ojb);
 
 
+//                    <center>   <input type=hidden  name='ID_TypeEntite' value='".($Entite->ID_TypeEntite ?? 1)."'>".($Entite->Parent_TypeEntite->Nom ?? '')."</center>
 
 echo "
+    <form action='/entite/save' method=post>
     
-<form action='/entite/save' method=post>
-    
+               <fieldset id='section5'>
+               <legend id='creation'> Entite </legend>
 
-
-                      <center> <label for=primaire> Numéro de l'entite:</label> </center>
-                       <input type=hidden name='ID_Entite' value'".$Entite->ID_Entite."'> 
+                      <label for=primaire> Numéro de l'entite:</label> 
+                       <input  name='ID_Entite' value'".$Entite->ID_Entite."'> <br>
                            
-                      <center>   <label for=id_te> Type d'entité:</label> </center>
-                      <center>   <input type=hidden  name='ID_TypeEntite' value='".($Entite->ID_TypeEntite ?? 1)."'>".($Entite->Parent_TypeEntite->Nom ?? '')."</center>
+                       <label for=id_te> Type d'entité:</label> <br>
                    
-                      <center>   <label for=nom> Nom:</label> </center>
-                      <center>   <input type=text  name='Nom' value='".$Entite->Nom."'></center>
+                       <label for=nom> Nom:</label> 
+                        <input id='nom'  name='Nom' value='".$Entite->Nom."'><br>
                     
-                       <center>   <label for=cp> Code Postal:</label> </center>
-                      <center>   <input type=text  name='CodePostal' value='".$Entite->CodePostal."'></center>
+                        <label for=prenom> Prenom:</label> 
+                       <input name='Prenom' value='".$Entite->Prenom."'> <br>
                     
-                      <center>   <label for=addresse> Addresse:</label> </center>
-                      <center>   <input type=text  name='Addresse' value='".$Entite->Addresse."'></center>
+                        <label for=cp> Code Postal:</label> 
+                        <input   name='CodePostal' value='".$Entite->CodePostal."'> <br>
+                    
+                        <label for=addresse> Addresse:</label>
+                        <input  name='Addresse' value='".$Entite->Addresse."'> <br>
              
-                      <center>   <label for=ville> Ville:</label> </center>
-                      <center>   <input type=text  name='Ville' value='".$Entite->Ville."'></center>
+                       <label for=ville> Ville:</label>
+                        <input  name='Ville' value='".$Entite->Ville."'><br>
                       
-                       <center>   <label for=Maiil> Mail:</label> </center>
-                      <center>   <input type=text  name='Mail' value='".$Entite->Mail."'></center>
+                       <label for=Maiil> Mail:</label> 
+                        <input  name='Mail' value='".$Entite->Mail."'> <br>
                      
-                      <center>   <label for=Tel> Tel:</label> </center>
-                      <center>   <input type=text  name='Tel' value='".$Entite->Tel."'></center>
+                        <label for=Tel> Tel:</label> 
+                        <input  name='Tel' value='".$Entite->Tel."'> <br>
                      
-                      <center>   <label for=raison> Raison:</label> </center>
-                      <center>   <input type=text  name='Raison' value='".$Entite->Raison."'></center>
+                       <label for=raison> Raison:</label> 
+                       <input  name='Raison' value='".$Entite->Raison."'> <br>
                      
-                      <center>   <label for=siret> Siret:</label> </center>
-                      <center>   <input type=text  name='Siret' value='".$Entite->Siret."'></center>
+                       <label for=siret> Siret:</label> 
+                        <input name='Siret' value='".$Entite->Siret."'> <br>
                       
-                      <center>   <label for=prenom> Prenom:</label> </center>
-                      <center>   <input type=text  name='Prenom' value='".$Entite->Prenom."'></center>
-                      
-                       <center>   <label for=CodeTiers> Code de Tiers:</label> </center>
-                      <center>   <input type=text  name='CodeTiers' value='".$Entite->CodeTiers."'></center>
+                       <label for=CodeTiers> Code de Tiers:</label> 
+                       <input name='CodeTiers' value='".$Entite->CodeTiers."'> <br>
                     
-                      <center>   <label for=capital> Capital:</label> </center>
-                      <center>   <input type=text  name='Capital' value='".$Entite->Capital."'></center>
+                      <label for=capital> Capital:</label> 
+                        <input name='Capital' value='".$Entite->Capital."'> <br>
                      
-                      <center>   <label for=numTva> Numero de Tva:</label> </center>
-                      <center>   <input type=text  name='NumeroTva' value='".$Entite->NumeroTva."'></center>
-             
+                        <label for=numTva> Numero de Tva:</label> 
+                        <input  name='NumeroTva' value='".$Entite->NumeroTva."'> <br>
              
 
-                    <center>  <button type=submit> Valider </button> </center>
-       
+                        <input type='submit' value='Valider'>
+             
+
+                    
+       </fiedset>
 </form>
                       
                        
