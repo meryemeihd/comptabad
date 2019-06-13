@@ -3,7 +3,8 @@
 
 echo '
         <div class="container utilisateur">
-		
+        <form action="/utilisateur/personne" method=post>
+      
        <fieldset  id="section4">
               <legend id="personne"> Utilisateur </legend>
                   
@@ -32,17 +33,20 @@ echo '
 				
                   <h3> <center> Changer le mot de passe </center> </h3>		  
                   <label for="mdp">Mot de passe actuelle: </label>
-                  <input type="password" autofocus="" id="mdp" name="mdp" required=""><br>
+                  <input type="password" autofocus="" id="mdp" name="mdp" required="><br>
                   <label for="mdp2"> &nbsp Nouveau mot de passe: </label> 
-                  <input type="password" autofocus="" id="mdp2" name="mdp2" required=""> <br>
+                  <input type="password" placeholder="******"  name="mdp2"   > <br>
                    
+
                  
                   <input type="submit" value="Valider">
 	
         </fieldset>
+        </form>
 				
 				
         ';
+
 ?>
 	
   <!--bottom -->

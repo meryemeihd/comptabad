@@ -42,19 +42,42 @@ echo '
            
        <!-- Faire tableau -->
     
-   
-    <table class="table table-striped">   
+        <table class="table table-striped">   
         <tr>
-            <th> Date de saisie</th>
-            <th> Numéro de pièce </th>
-            <th> Libelle</th>  
+           <th> Date saisie</th>
+            <th>Numero</th>
+            <th>Libelle</th>  
             <th> Commentaire</th>
-            <th>  Montant</th>
-            <th> Type de paiement </th>
-            <th> Date de rapprochement </th>
+            <th>Prix</th>
         </tr>
-      </table>
+  
+       
+       <?php
+       
+        echo" <form action='/rapprochement/afficher' method=post>";
+       
+                       echo" <input type=hidden name='ID_Facture' value='".$Facture->ID_Facture."'>";
+                             echo" <input type=hidden name='ID_Piece' value='".$Piece->ID_Piece."'>";
+                                   echo" <input type=hidden name='ID_Ecriture' value='".$Ecriture->ID_Ecriture."'>";
+     
+                   echo '<tr>'
+                       
+               . '<td> <center>'. $Ecriture->Date.  '</center></td>'
+               . '<td> <center>'. $Piece->NumeroPiece.  '</center></td>'
+               . '<td> <center>'. $Piece->DescriptionPiece.  '</center></td>'
+               . '<td> <center>'. $Facture->Commentaire.  '</center></td>'
+               . '<td> <center>'. $Ecriture->Montant.  '</center></td>'
+             
+         ;
+                    echo "</form>"; 
+   
+                    echo "<pre>";
+  print_r($Facture);
+  echo "</pre>";
+        ?>
         
+        
+        </table>
         <!--Note -->
         <!-- priviligier les combobox plutôt que les textbox
         revoir la structure pour qu'elle soit plus conforme 

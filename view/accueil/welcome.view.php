@@ -31,11 +31,22 @@
                
 <?php        
    
-             
+             if (!isset($_SESSION['utilisateur']))
+             {
+                 echo "<fieldset id='section1'>
+               <legend id='accueil'> Accueil </legend>
+                <p> <h1><center> Bienvenue!</center> </h1></p><br>
+                <p> <h3> <center> Comptabad est une application web concernant la comptabilité du comptabilité de badminton </center </h3> </p> <br>
+                <p> <h3> <center> Pour plus d'information contacter nous </center> </h3> </p>";
+             }
              
            
             
-
+           if (isset($_SESSION['utilisateur']))
+           
+           
+               
+           
                    echo "  <div id='accueil'>
 
 	<div class='tab' id='d_men_action'>
@@ -71,7 +82,10 @@
 	</div>
 	
 	
-</div>	";
+           </div>" 
+           
+           ;
+                   
     
 ?>
 

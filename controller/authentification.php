@@ -15,8 +15,9 @@ class authentification {
             //requete
             $Query="SELECT * FROM Utilisateur WHERE Login = '".$_POST["login"]."' AND Motdepasse = '".$_POST["mdp"]."'" ;
             //effectue la requete
+            
             $Result = $Connexion->sql_query($Query);
-
+   
             if ($Ligne = $Connexion->sql_fetch_object($Result,'MyORM\Utilisateur'))
             {
                 //création de la session utilisateur 
