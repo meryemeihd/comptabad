@@ -1,0 +1,75 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+  
+        <!-- CSS   -->
+<!DOCTYPE html!>
+<html>
+<!--header-->
+    <head>
+        <title> Comptabad</title>
+        
+        <!-- CSS   -->
+        <link rel="stylesheet" href="/src/normalize.css">
+        <link rel="stylesheet" href="/src/header.css">
+        <link href="css/style.css" rel="stylesheet">
+        <!-- CSS   -->
+
+        <!--font -->
+        <link href = "https://fonts.googleapis.com/css?family= Open + Sans & display = swap" rel = "stylesheet">
+        <!-- fin du font -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+        <!--font -->
+        <link href = "https://fonts.googleapis.com/css?family= Open + Sans & display = swap" rel = "stylesheet">
+        <!-- fin du font -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <SCRIPT>
+    function toggle()
+    {
+      if (bla1.style.display == 'none')
+      {
+        bla1.style.display = 'block';
+        bla2.style.display = 'none';
+        bla1.style.bgcolor = 'red';
+      }
+    }
+    function toggle2()
+    {
+        if(bla2.style.display=='none')
+        {
+        bla1.style.display = 'none';
+        bla2.style.display = 'block';
+        
+        }
+       
+    }
+    </SCRIPT>
+    
+        <table>
+            <tr>
+            <td onclick="toggle();"> <h1>Titre1</h1></td>
+            <td onclick="toggle2();"> <h1> Titre2 </h1> </td>
+            </tr>
+            <tr id="bla1" name="bla1" style="display:block" > 
+                <td colspan="2">bla1</td>
+            </tr>
+            <tr id="bla2" name="bla2" style="display:none"> 
+                <td colspan="2">bla2</td>
+            </tr>
+           
+        </table>            
+           
+        
+        <!-- Footer --> 
+    </body>
+</html>

@@ -17,10 +17,8 @@ class journal
         
         
         
-        //   global $ModePayement;
-      //$ModePayement = new MyORM\ModePayement($_GET["param"][0] ?? null);
-      
-      
+  
+  /*    
      //   global $Payement;
      //$Payement = new MyORM\Payement($_GET["param"][0] ?? null);
         
@@ -30,7 +28,7 @@ class journal
  
          global $Ecriture;
         $Ecriture= new MyORM\Ecriture($_GET["param"][0]??null);
-   
+   */
       
      
  }
@@ -57,6 +55,7 @@ class journal
       
       $Affichage = $Connexion->sql_query($Query);
       
+      //#Test
       //SELECT `Ecriture`.`Date`, `Ecriture`.`Montant`, `Piece`.`NumeroPiece`,`Piece`.`DescriptionPiece` ,`Facture`.`Commentaire`, `Payement`.`Commentaire`, `ModePayement`.`Libelle` FROM `Ecriture` LEFT JOIN `Piece` ON `Ecriture`.`ID_Piece` = `Piece`.`ID_Piece` LEFT JOIN `Facture` ON `Piece`.`ID_Facture` = `Facture`.`ID_Facture` LEFT JOIN `Payement` ON `Piece`.`ID_Payement` = `Payement`.`ID_Payement` LEFT JOIN `ModePayement` ON `Facture`.`ID_ModePayement` = `ModePayement`.`ID_ModePayement`
       
  
