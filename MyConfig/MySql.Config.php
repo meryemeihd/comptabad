@@ -8,3 +8,6 @@ $MySQLPort = 3306;
 $MySQLTransactionMode = 0;
 $MySQLDebug = 1;
 $MySQLCharset = "UTF8";
+
+
+$debug = 1;

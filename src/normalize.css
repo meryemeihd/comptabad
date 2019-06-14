@@ -1,0 +1,265 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6 juin 2019, 15:28:43
+    Author     : merye
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,500,900');
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,900');
+
+/*
+html, body{
+    margin: 0;padding: 0;
+    font-family: 'Lato'; 
+    max-width: 1500px;
+   min-width: 700px;
+    
+}
+*/
+
+@media screen and (min-width:1200px) and (max-width:1400px){
+    
+    html, body{
+    margin: 0;padding: 0;
+    font-family: 'Lato'; 
+    max-width: 1500px;
+   min-width: 700px;
+    
+}
+}
+
+.inner {
+    width: 80%;
+    margin: auto;
+}
+
+.input {
+    outline: none;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#box {
+    position: fixed;
+                Left:50%;
+                top: 40%;
+                width: auto; 
+                height: auto;
+     margin: 0 auto;
+                 margin-left: -130px;
+                 margin-top: -110px;
+        background-color: #f7f7f7;
+       border: 10px solid #ededed;
+        border-radius: 3px;
+}
+
+
+.header {
+    width: 100%;
+    height: 90px;
+    
+}
+
+.header > h4 {
+    text-align: center;
+    padding-top: 30px;
+    color: #8f95a1;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 30;
+}
+
+h6 {
+    margin: 0;
+    width: auto;
+    height: 10px;
+    background-color: #fff;
+    padding: 20px 30px;
+    color: #a9b0c0;
+    border-top: 1px solid #ededed;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+input[type="text"], input[type="password"]{
+    width: 100%;
+    height: 50px;
+    border: none;
+    padding: 0 35px;
+    box-sizing: border-box;
+    font-family:  'Lato', sans-serif;
+    color: #a9afbd;
+    font-weight: 300;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-left: 3px solid #fe655d;
+    -webkit-transition: border .2s ease;
+    -moz-transition: border .2s ease;
+    -o-transition: border .2s ease;
+    transition: border .2s ease;
+}
+
+input[type="password"] {
+    border-bottom: 1px  solid #ededed;
+}
+
+
+input[type="submit"] {
+    background-color: #E9967A;
+   border:1px solid #e0514b;
+    height: 60px;
+    width: 100%;
+  //  margin: 30px auto;
+    display: block;
+    color:#fff;
+  border-radius: all .2s ease;
+  font-family:  'Lato', sans-serif;
+  font-weight: 300;
+}
+
+input[type="submit"]:hover
+{
+    background-color: #e0514b;
+    border:1px solid #fe655d;
+}
+
+//fieldset accueil
+#section1 {
+  margin-bottom: 15px;
+  padding: 10px;
+  
+}
+
+#accueil {
+     padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  
+}
+
+h3 {
+    margin: 0;
+    width: auto;
+    height: 10px;
+    background-color: #fff;
+    padding: 20px 30px;
+    color:#3483DA;
+    border-top: 1px solid #ededed;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+// fieldset facture
+
+ 
+label {
+  width: 110px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 6px;
+}
+
+input:focus {
+  background: #eaeaea;
+}
+ 
+input, textarea {
+  width: 200px;
+}
+ 
+textarea {
+  height: 100px;
+}
+
+#section2 {
+  margin-bottom: 15px;
+  padding: 10px;
+ border-color:red;
+}
+
+//legend facture
+#depense{
+  padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: red;
+  border-color:red;
+}
+
+#section3 {
+     margin-bottom: 15px;
+  padding: 10px;
+ border-color: palegreen;
+}
+
+#paye {
+     padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: green;
+  border-color:red;
+}
+
+#section4 {
+     margin-bottom: 15px;
+  padding: 10px;
+ border-color: background;
+}
+
+#personne {
+     padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: background;
+}
+
+
+#section5 {
+     margin-bottom: 15px;
+  padding: 10px;
+ border-color: blue;
+}
+
+#regarder {
+     padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: cornflowerblue;
+}
+
+#section6 {
+     margin-bottom: 15px;
+  padding: 10px;
+ border-color: #6CCAE5;
+}
+
+#rapprocher{
+     padding: 0px 3px;
+  font-weight: bold;
+  font-variant: small-caps;
+  color: #95D9ED; 
+}
+
+td{
+    border:1px solid black;
+    padding:10px 15px;   
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+#bla1 {
+    text-decoration: underline;
+}

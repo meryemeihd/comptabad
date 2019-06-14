@@ -48,6 +48,7 @@ $MyORMCASCADE = true;
 //code cascade, children deleted before parents
 
 $intotheset = "
+
 ";
 $MyORMINTOTHESET = $intotheset;
 //Define specific code when set is use (u can update a date field, so ur database must be normalise)
