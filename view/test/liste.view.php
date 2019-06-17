@@ -9,4 +9,4 @@ while ($Ligne = $Connexion->sql_fetch_object($Resultat))
 }
 
 echo "<tr><td></td><td></td><td><a href='/test/edit'>New</a></td></tr>";
-echo "</table>";
+echo "</table>";    

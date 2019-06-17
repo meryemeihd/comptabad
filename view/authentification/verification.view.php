@@ -1,9 +1,5 @@
 
-<!--Fin du header -->
- 
-
 <?php
-
 //si on est authentifié 
 if (isset($_SESSION["utilisateur"]))
 {
@@ -12,19 +8,10 @@ if (isset($_SESSION["utilisateur"]))
        echo '<SCRIPT LANGUAGE="JavaScript">
        document.location.href="'.$location.'"
        </SCRIPT>';
-
 }
-
-//si on est pas authentifé formulaire de connexion
 ?>
-   <!--
-        
-   <form action='/authentification/verification' method=post>
-             <center><input type='text' id='loginUser' size=32 class='form-control loginconnect' placeholder='Pseudo' name='login' required></center>
-            <center><input type='password' id='passwordUser' size='32' class='form-control passwordconnect' placeholder='******' name='mdp' required></center>
-            <center><button type='submit' class='btn btn-primary connectbt'><i class='fa fa-connectdevelop fa-lg'  aria-hidden='true'></i>Se connecter </button></center>
-        </form>  
-   -->
+
+
     
     <form action='/authentification/verification' method=post>
             <div id='wrapper'> 
