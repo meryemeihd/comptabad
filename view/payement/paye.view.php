@@ -37,6 +37,32 @@ echo "<form action='/payement/save' method=post>
                     echo "> ".$value->Libelle."<br>";
                 }
                 
+                //COMPTE TYPE
+
+ 
+   
+//COMPTE LIBELLE COMPTE RESULTAT 2     
+                echo " <label for=TypeCompte> Selectionnez </label> <br>  ";
+              echo '<select>';
+           
+               
+              while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes2)) {
+                    echo "<option value='.$value->LibelleCompteResultat.'>";
+                    echo "$value->LibelleCompteResultat";  
+              }
+                  
+         echo '</select> <br>';
+
+//COMPTE LIBELLE COMPTE RESULTAT 3
+              echo " <label for=TypeCompte>  Selectionnez si besoin </label> <br>  ";
+              echo '<select>';
+              
+            while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes3)) {
+                  echo "<option value='.$value->LibelleCompteResultat.'>";
+                   echo "$value->LibelleCompteResultat";  
+              }
+                 echo '</select> <br>';
+                
                 echo "<br> 
 
                 <label for=numeroCheque> Numero de cheque:</label> 

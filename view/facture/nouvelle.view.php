@@ -34,6 +34,9 @@ echo "<form action='/facture/save' method=post>
                 
                 ";
 
+
+//MODEPAYEMENT
+
                 while  ($value = $Connexion->sql_fetch_object($ResultatModePayement)) {
                     echo "<input type=radio  name='ID_ModePayement' value='".$value->ID_ModePayement."'";
                     if ($value->ID_ModePayement == $Facture->ID_ModePayement)
@@ -41,8 +44,45 @@ echo "<form action='/facture/save' method=post>
                     echo "> ".$value->Libelle."<br>";
                 }
                 
-                echo "
-   
+ 
+//COMPTE TYPE
+  
+       
+  
+//COMPTE LIBELLE COMPTE RESULTAT 1
+       echo " <label for=TypeCompte>  Selectionnez </label>  <br>";
+            
+   echo "<select>";
+              while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes1)) {
+                
+                    echo "<option value='.$value->LibelleCompteResultat.'>";
+                    echo "$value->LibelleCompteResultat";  
+                    if ($value->LibelleCompteResultat)
+                    {
+                        //TEST
+                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
+                    }
+                   
+              }
+         
+         echo '</select> <br>';
+
+//COMPTE LIBELLE COMPTE RESULTAT 3
+              echo " <label for=TypeCompte>  Selectionnez si c'est cela correspond a un autre compte </label> <br>  ";
+              echo '<select>';
+              
+            while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes3)) {
+                
+                  echo "<option value='.$value->LibelleCompteResultat.'>";
+                   echo "$value->LibelleCompteResultat";  
+              }
+                 echo '</select> <br>';
+      
+       
+        
+                
+                
+                echo " <br>
              
                 <label for=dateRapprochement> Rapprochement: </label> 
                 <input type='date' id='dateRapprochement' name='dateRapprochement' required=''> <br> <br>
@@ -55,6 +95,7 @@ echo "<form action='/facture/save' method=post>
                  <input type=hidden name='ID_Facture' value='".$Facture->ID_Facture."'>
                 <input type=hidden name='ID_Piece' value='".$Piece->ID_Piece."'>
                 <input type=hidden name='ID_Ecriture' value='".$Ecriture->ID_Ecriture."'> 
+              
 
        
                     

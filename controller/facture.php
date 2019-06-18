@@ -9,9 +9,27 @@ class facture {
        $Query = "SELECT * FROM ModePayement";
        $ResultatModePayement= $Connexion->sql_query($Query);
        
+       global $Compte;
+        $Compte = new MyORM\Compte;
+       
+       global $ResultatCompte;
+       $Query = "SELECT * FROM Compte";
+       $ResultatCompte= $Connexion->sql_query($Query);
+       
+       
+       
+       
+        global $ResultatCompteLibelleCptRes1;
+         $Query = "SELECT * FROM Compte WHERE Type='Depense'";
+         $ResultatCompteLibelleCptRes1= $Connexion->sql_query($Query);
+         
+         global $ResultatCompteLibelleCptRes3;
+         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Autres'";
+         $ResultatCompteLibelleCptRes3= $Connexion->sql_query($Query);
+       
               global $Facture;
        
-        $Facture = new MyORM\Facture($_GET["param"][0] ?? null);
+              $Facture = new MyORM\Facture($_GET["param"][0] ?? null);
        
         global $Cheque;
         $Cheque= new MyORM\Cheque($_GET["param"][0]??null);
@@ -89,12 +107,16 @@ class facture {
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Montant($_POST['PrixTTC']);
        //insertion de la date dans lmd de ecriture1 dans ecriture
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
+       
+       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Compte("ID_Compte");
        //insertion de la date de ecriture2 dans ecriture
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
        //insertion montant de ecriture2 dans ecriture
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Montant(-$_POST['PrixTTC']);
        //insertion de la date actuelle dans ldm de ecriture2 dans ecriture
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
+       
+       $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Compte("ID_Compte");
        
            
              //sauvegarde facture

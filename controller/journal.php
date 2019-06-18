@@ -30,10 +30,12 @@ class journal
       global $Connexion;
       
       $Query = "
-          SELECT modepayement.Libelle, piece.DescriptionPiece, piece.NumeroPiece, ecriture.Montant, ecriture.Date, facture.Commentaire AS CommentaireFacture, payement.Commentaire AS CommentairePayement, facture.NumeroFacture, payement.Numero AS NumeroPayement
+          SELECT modepayement.Libelle, piece.DescriptionPiece, piece.NumeroPiece, ecriture.Montant, ecriture.Date, facture.Commentaire AS CommentaireFacture, payement.Commentaire AS CommentairePayement, facture.NumeroFacture, payement.Numero AS NumeroPayement, compte.LibelleCompteResultat
           FROM piece 
          INNER JOIN ecriture
          ON ecriture.ID_Piece = piece.ID_Piece 
+         Left JOIN compte
+         ON compte.ID_Compte = ecriture.ID_Compte
          LEFT JOIN facture 
          ON piece.ID_Facture = facture.ID_Facture 
         LEFT JOIN payement

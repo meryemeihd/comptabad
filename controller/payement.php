@@ -16,6 +16,19 @@ class payement
        $Query = "SELECT * FROM ModePayement";
        $ResultatModePayement = $Connexion->sql_query($Query);
      
+       
+              global $Compte;
+        $Compte = new MyORM\Compte;
+       
+   
+         
+         global $ResultatCompteLibelleCptRes2;
+         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Recette'";
+         $ResultatCompteLibelleCptRes2= $Connexion->sql_query($Query);
+         
+         global $ResultatCompteLibelleCptRes3;
+         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Autres'";
+         $ResultatCompteLibelleCptRes3= $Connexion->sql_query($Query);
 
      
    global $Cheque;
@@ -97,12 +110,14 @@ class payement
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Montant($_POST['Montant']);
          //insertion de lmd2
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
+       
+         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Compte("ID_Compte");
            //insertion de date de Ecriture2
        $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
           //insertion de montant de Ecriture1
        $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Montant(-$_POST['Montant']);
        //insertion de lmd2
-       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
+       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_lmd(date("ID_Compte"));
 
 
        
