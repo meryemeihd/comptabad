@@ -14,10 +14,7 @@ echo "<form action='/payement/save' method=post>
              
                 <label for=libelle>Libelle:</label>  
                 <input  name='JustificatifPayement'  value='".$Payement->JustificatifPayement."'> <br>
-                 
-                <label for=libelle>Reçu de :</label>  
-                <input  name='Reçu'  value='".$Payement->Reçu."'> <br>
-          
+                        
                 <label for=libelle> Montant:</label>  
                 <input id='Montant' autofocus='' name='Montant' required='' value='".$Payement->Montant." '> 
                  <label for=libelle>€</label>  <br>
@@ -37,31 +34,53 @@ echo "<form action='/payement/save' method=post>
                     echo "> ".$value->Libelle."<br>";
                 }
                 
-                //COMPTE TYPE
 
+                
+//TIERS 
+                    echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez reenseigner les informations dans la page saisir Tiers avant) </label>  <br>";
+            
+   echo "<select name= 'ID_Entite'>";
+              while  ($value = $Connexion->sql_fetch_object($ResultatEntite)) {
+                
+               echo "<option value='".$value->ID_Entite."' >";
+            
+                 if ($value->ID_Entite)
+                 {
+                      
+                        echo  "$value->Nom                 " ; echo"   $value->Prenom";
+                
+                 }
+                   
+              }
+         
+        echo '</select> <br>';
  
    
 //COMPTE LIBELLE COMPTE RESULTAT 2     
-                echo " <label for=TypeCompte> Selectionnez </label> <br>  ";
-              echo '<select>';
-           
-               
+       echo " <label for=TypeCompte>  Selectionnez </label>  <br>";
+            
+   echo "<select name= 'ID_Compte'>";
               while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes2)) {
-                    echo "<option value='.$value->LibelleCompteResultat.'>";
-                    echo "$value->LibelleCompteResultat";  
+                
+              
+                      
+               echo "<option value='".$value->ID_Compte."' >";
+            
+                 if ($value->ID_Compte)
+                 {
+                      
+                        //TEST
+                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
+                        echo $value->LibelleGenerique;
+                
+                 }
+                   
               }
-                  
-         echo '</select> <br>';
+         
+        echo '</select> <br>';
 
 //COMPTE LIBELLE COMPTE RESULTAT 3
-              echo " <label for=TypeCompte>  Selectionnez si besoin </label> <br>  ";
-              echo '<select>';
-              
-            while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes3)) {
-                  echo "<option value='.$value->LibelleCompteResultat.'>";
-                   echo "$value->LibelleCompteResultat";  
-              }
-                 echo '</select> <br>';
+
                 
                 echo "<br> 
 
@@ -69,7 +88,7 @@ echo "<form action='/payement/save' method=post>
                <input id='Cheque' autofocus='' name='Cheque' value='".$Payement->Parent_Cheque->Numero."'><br>
              
                 <label for=dateRapprochement> Rapprochement: </label> 
-                <input type='date' id='dateRapprochement' name='dateRapprochement' required=''> <br> <br>
+                <input type='date' id='dateRapprochement' name='dateRapprochement' alue='".$Payement->DateRapprochement." ' > <br> <br>
              
 
                 

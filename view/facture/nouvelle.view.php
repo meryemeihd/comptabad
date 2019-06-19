@@ -24,9 +24,6 @@ echo "<form action='/facture/save' method=post>
                 <input id='PrixTTC' autofocus='' name='PrixTTC' required='' value='".$Facture->PrixTTC."'> 
                 <label for=libelle>€</label>  <br>
                 
-               <label for=donneur> Nom du donneur facture: </label>
-               <input id='Donneur' name='Donneur' value='".$Facture->Donneur."'>
-             
                 <label for=Commentaire> Commentaire:</label>
                 <textarea id='Commentaire' name='Commentaire' ".$Facture->Commentaire."></textarea> <br>
              
@@ -47,36 +44,73 @@ echo "<form action='/facture/save' method=post>
  
 //COMPTE TYPE
   
-       
+   //TIERS 
+                       echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez reenseigner les informations dans la page saisir Tiers avant) </label>  <br>";
+            
+   echo "<select name= 'ID_Entite'>";
+              while  ($value = $Connexion->sql_fetch_object($ResultatEntite)) {
+                
+              
+                      
+               echo "<option value='".$value->ID_Entite."' >";
+            
+                 if ($value->ID_Entite)
+                 {
+                      
+                        //TEST
+                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
+                        echo  "$value->Nom                 " ; echo"   $value->Prenom";
+                
+                 }
+                   
+              }
+         
+        echo '</select> <br>';
   
 //COMPTE LIBELLE COMPTE RESULTAT 1
        echo " <label for=TypeCompte>  Selectionnez </label>  <br>";
             
-   echo "<select>";
+   echo "<select name= 'ID_Compte'>";
               while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes1)) {
                 
-                    echo "<option value='.$value->LibelleCompteResultat.'>";
-                    echo "$value->LibelleCompteResultat";  
-                    if ($value->LibelleCompteResultat)
-                    {
+              
+                      
+               echo "<option value='".$value->ID_Compte."' >";
+            
+                 if ($value->ID_Compte)
+                 {
+                      
                         //TEST
                         // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
-                    }
+                        echo $value->LibelleGenerique;
+                
+                 }
                    
               }
          
-         echo '</select> <br>';
+        echo '</select> <br>';
 
 //COMPTE LIBELLE COMPTE RESULTAT 3
+        /*
               echo " <label for=TypeCompte>  Selectionnez si c'est cela correspond a un autre compte </label> <br>  ";
-              echo '<select>';
+              echo "<select name= 'ID_Compte'>";
               
             while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes3)) {
                 
-                  echo "<option value='.$value->LibelleCompteResultat.'>";
-                   echo "$value->LibelleCompteResultat";  
+                                    
+               echo "<option value='".$value->ID_Compte."' >";
+            
+               //  if ($value->ID_Compte)
+                 {
+                      
+                        //TEST
+                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
+                        echo "$value->LibelleCompteResultat";
+                 }
               }
                  echo '</select> <br>';
+         * 
+         */
       
        
         
@@ -85,7 +119,7 @@ echo "<form action='/facture/save' method=post>
                 echo " <br>
              
                 <label for=dateRapprochement> Rapprochement: </label> 
-                <input type='date' id='dateRapprochement' name='dateRapprochement' required=''> <br> <br>
+                <input type='date' id='dateRapprochement' name='dateRapprochement'   value='".$Facture->DateRapprochement." ' > <br> <br>
             
                <label for=numeroCheque> Numero de cheque:</label> 
                 <input id='Cheque'  name='Cheque'  value='".$Cheque->Numero."'> <br>

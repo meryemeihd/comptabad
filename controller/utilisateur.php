@@ -11,13 +11,13 @@ class utilisateur
  public static function personne () {
        
       
-                global $Connexion;
-                 global $Utilisateur;
+       //         global $Connexion;
+          //       global $Utilisateur;
              
               
-                $Query= "UPDATE Utilisateur SET Motdepasse = '".$_POST["mdp2"]."' "; 
+             //   $Query= "UPDATE Utilisateur SET Motdepasse = '".$_POST["mdp2"]."' "; 
               
-                $Changement = $Connexion->sql_query($Query);
+             //   $Changement = $Connexion->sql_query($Query);
             
      
  }

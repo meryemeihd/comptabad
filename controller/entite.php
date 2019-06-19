@@ -31,8 +31,22 @@ class entite {
         $Entite->CodeTiers=$_POST['CodeTiers'];
         $Entite->Capital=$_POST['Capital'];
         $Entite->NumeroTva=$_POST['NumeroTva'];
+        
+             if (empty($Entite->Piece_Entite))
+       {
+           //création de Piece
+            $Piece =new MyORM\Piece();
+            //ajout Piece 
+            $Entite->add_Piece_Entite($Piece);
+       }
 
         $Entite->save(); 
+        
+        
+   
+       
+       
+         
     }
     
     

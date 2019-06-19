@@ -11,33 +11,27 @@ class payement
      
           global $Connexion;
           
-     //requete
+     //REQUETE MODEPAYEMENT
             global $ResultatModePayement;
        $Query = "SELECT * FROM ModePayement";
        $ResultatModePayement = $Connexion->sql_query($Query);
      
-       
-              global $Compte;
-        $Compte = new MyORM\Compte;
-       
-   
-         
+
+//REQUETE DES TYPES DE COMPTES POUR RECUPERER LES LIBELLEGENERIQUE DANS LA VUE 
          global $ResultatCompteLibelleCptRes2;
-         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Recette'";
+         $Query = "SELECT * FROM Compte WHERE Type='Recette' OR Type='Autres'";
          $ResultatCompteLibelleCptRes2= $Connexion->sql_query($Query);
          
-         global $ResultatCompteLibelleCptRes3;
-         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Autres'";
-         $ResultatCompteLibelleCptRes3= $Connexion->sql_query($Query);
+//REQUETE ENTITE POUR RECUPERER ID_ENTITE ET LE METTRE DANS PIECE ET AFFICHER NOM ET PRENOM DANS  LA VUE 
+       global $ResultatEntite;
+       $Query = "SELECT * FROM Entite";
+       $ResultatEntite= $Connexion->sql_query($Query);
 
-     
-   global $Cheque;
-      $Cheque = new MyORM\Cheque($_GET["param"][0] ?? null);
-              global $Piece;
-            $Piece= new MyORM\Piece($_GET["param"][0]??null);
+        global $Piece;
+        $Piece= new MyORM\Piece($_GET["param"][0]??null);
  
-    global $Ecriture;
-     $Ecriture= new MyORM\Ecriture($_GET["param"][0]??null);
+        global $Ecriture;
+        $Ecriture= new MyORM\Ecriture($_GET["param"][0]??null);
  }
  
  
@@ -55,11 +49,13 @@ class payement
        $Payement->Commentaire=$_POST['Commentaire'];
        $Payement->Date=$_POST['Date'];
        $Payement->Montant=$_POST['Montant'];
-       $Payement->Reçu=$_POST['Reçu'];
+       $Payement ->DateRapprochement=$_POST['dateRapprochement'];
        
        
        //~~ Pour que Payement prend la valeur de l'ID_ModePayment de ModePayement et l'insère dans l'ID_ModePayement de Payement 
          $Payement->ID_ModePayement= $_POST["ID_ModePayement"];
+         $Payement->ID_Compte= $_POST["ID_Compte"];
+  
   
 
       
@@ -69,7 +65,7 @@ class payement
          
          if (empty($Payement->ID_Cheque))
              $Payement->Parent_Cheque = new MyORM\Cheque();
-         
+         //INSERTION DU NUMERO DE CHEQUE DANS CHEQUE 
          $Payement->Parent_Cheque->Numero = $_POST['Cheque'];
          
     
@@ -90,6 +86,12 @@ class payement
               //insertion de Numero dans Piece
        $Payement->Piece_Payement[0]->set_NumeroPiece($_POST['Numero']);
        
+       // INSERTION DE LA DATE DE RAPPROCHEMENT DANS PIECE
+       $Payement->Piece_Payement[0]->set_DateRapprochement($_POST['dateRapprochement']);
+       
+       //INSERTION DE ID_ENTITE DANS PIECE
+        $Payement->Piece_Payement[0]->set_ID_Entite($_POST['ID_Entite']);
+       
        
         if (empty($Payement->Piece_Payement[0]->Ecriture_Piece))
        {
@@ -108,19 +110,24 @@ class payement
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Date($_POST['Date']);
            //insertion de montant de Ecriture1
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Montant($_POST['Montant']);
-         //insertion de lmd2
+         //insertion de lmd2 DANS ECRITURE1
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
-       
-         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Compte("ID_Compte");
+       //INSERTION DE DATE DE RAPPROCHEMENT DANS ECRITURE1
+        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']); 
+       //INSERTION CLE ETRANGERE DE ID_Compte DANS ECRITURE1
+         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
+         
+         
            //insertion de date de Ecriture2
-       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
-          //insertion de montant de Ecriture1
-       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Montant(-$_POST['Montant']);
-       //insertion de lmd2
-       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_lmd(date("ID_Compte"));
-
-
-       
+         $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
+          //insertion de montant DANS ECRITURE de Ecriture2
+         $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Montant(-$_POST['Montant']);
+       //insertion de lmd2 DANS ECRITURE DE ECRITURE2
+          $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
+       //clé etrangère INSERTION DE ID_COMPTE DE ECRITURE2
+          $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
+            //clé etrangère INSERTION DE DATERAPPROCHEMENT DE ECRITURE2
+            $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_DateRapprochement($_POST['dateRapprochement']);
         
         //sert a afficher
          /*

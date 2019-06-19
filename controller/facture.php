@@ -5,31 +5,25 @@ class facture {
  public static function nouvelle () {
        global $Connexion;
              
+//REQUETE MODEPAYEMENT POUR QU ON VOIT LE LIBELLE DANS LA VUE ET PERMETTRE DE METTRE LA RELATION ENTRE FACTURE ET MP
        global $ResultatModePayement;
        $Query = "SELECT * FROM ModePayement";
        $ResultatModePayement= $Connexion->sql_query($Query);
        
-       global $Compte;
-        $Compte = new MyORM\Compte;
-       
-       global $ResultatCompte;
-       $Query = "SELECT * FROM Compte";
-       $ResultatCompte= $Connexion->sql_query($Query);
-       
-       
-       
-       
+
+//REQUETE DE ENTITE PR PERMETTRE D AFFICHER NOM ET PRENOM LIE ENTITE ET PIECE 
+        global $ResultatEntite;
+       $Query = "SELECT * FROM Entite";
+       $ResultatEntite= $Connexion->sql_query($Query);
+ 
+ //REQUETE POUR PERMETTRE D AFFICHER LIBELLE ET RELIER COMPTE ET ECRITURE 
         global $ResultatCompteLibelleCptRes1;
-         $Query = "SELECT * FROM Compte WHERE Type='Depense'";
+         $Query = "SELECT * FROM Compte WHERE Type='Depense' OR Type='Autres'";
          $ResultatCompteLibelleCptRes1= $Connexion->sql_query($Query);
          
-         global $ResultatCompteLibelleCptRes3;
-         $Query = "SELECT DISTINCT LibelleCompteResultat FROM Compte WHERE Type='Autres'";
-         $ResultatCompteLibelleCptRes3= $Connexion->sql_query($Query);
-       
-              global $Facture;
-       
-              $Facture = new MyORM\Facture($_GET["param"][0] ?? null);
+    
+        global $Facture; 
+         $Facture = new MyORM\Facture($_GET["param"][0] ?? null);
        
         global $Cheque;
         $Cheque= new MyORM\Cheque($_GET["param"][0]??null);
@@ -39,6 +33,9 @@ class facture {
  
      global $Ecriture;
         $Ecriture= new MyORM\Ecriture($_GET["param"][0]??null);
+        
+        
+        
 
  }
  
@@ -50,21 +47,23 @@ class facture {
              
          //creation Cheque
            $Cheque =new MyORM\Cheque($_POST["ID_Cheque"]);
-
+             
+           
+    
              
              //element facture
              $Facture->NumeroFacture=$_POST['NumeroFacture'];
              $Facture ->Date=$_POST['Date'];
              $Facture->DesignationFacture=$_POST['DesignationFacture'];
              $Facture->PrixTTC=$_POST['PrixTTC'];
-             $Facture->Donneur=$_POST['Donneur'];
              $Facture->Commentaire=$_POST['Commentaire'];
+             $Facture ->DateRapprochement=$_POST['dateRapprochement'];
+       
           
              //permet d'avoir la clé étrangère
-              $Facture->ID_ModePayement=$_POST["ID_ModePayement"] ;
-             
-      
-       
+                $Facture->ID_ModePayement=$_POST["ID_ModePayement"] ;
+                $Facture->ID_Compte=$_POST["ID_Compte"] ;                                                   
+
          //attribut Numero à Cheque
         $Cheque->Numero=$_POST['Cheque'];
      
@@ -83,7 +82,10 @@ class facture {
        $Facture->Piece_Facture[0]->set_DescriptionPiece($_POST['DesignationFacture']);
        //NumeroFacture
        $Facture->Piece_Facture[0]->set_NumeroPiece($_POST['NumeroFacture']);
-       
+       //INSERTION DATE RAPPROCHEMENT DANS PIECE
+        $Facture->Piece_Facture[0]->set_DateRapprochement($_POST['dateRapprochement']);
+       //INSERTION ID ENTITE DANS PIECE
+       $Facture->Piece_Facture[0]->set_ID_Entite($_POST['ID_Entite']);
        
        
         if (empty($Facture->Piece_Facture[0]->Ecriture_Piece))
@@ -101,24 +103,35 @@ class facture {
        
        //insertion ecriture 1 et ecriture 2
        
-       //insertion date de ecriture1 dans ecriture 
+          //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Date($_POST['Date']);
-       //insertion montant de ecriture1 dans ecriture
+          //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Montant($_POST['PrixTTC']);
-       //insertion de la date dans lmd de ecriture1 dans ecriture
+       //INSERTION DATE RAPPROCHEMENT DS ECRITURE AVEC ECRITURE1
+        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']);
+      
+         //INSERTION DE DATE ACTUELLE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
+       //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE1
+       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
        
-       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Compte("ID_Compte");
-       //insertion de la date de ecriture2 dans ecriture
+        //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE2
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
-       //insertion montant de ecriture2 dans ecriture
+         //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE2
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Montant(-$_POST['PrixTTC']);
-       //insertion de la date actuelle dans ldm de ecriture2 dans ecriture
+       //INSERTION DE DATE RAPPROCHEMENT DANS ECRITURE AVEC ECRITURE2
+        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_DateRapprochement($_POST['dateRapprochement']);
+       //INSERTION DE LA DATE ACTUELLE DANS ECRITURE AVEC ECRITURE2
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
+       //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE2
+        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
        
-       $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Compte("ID_Compte");
        
-           
+       
+        
+       
+    
+        
              //sauvegarde facture
                 $Facture->save(); 
                 
