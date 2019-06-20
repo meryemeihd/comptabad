@@ -1,5 +1,5 @@
-
 <?php
+
 echo '       
         <form action="/journal/regarder" method=post>
                <fieldset  id="section5">
@@ -65,7 +65,6 @@ echo '
       
        echo "<tr>"
        . "<td rowspan=2> Date saisie </td>"
-               . "<td  rowspan=2> Numero Facture </td>"
                . " <td  rowspan=2> Numero Payement </td>"
                . "<td  rowspan=2> Description </td>"
                . "<td  rowspan=2> Commentaire </td>"
@@ -90,19 +89,16 @@ while ($Ligne = $Connexion->sql_fetch_object($Resultat))
      if ($Ligne->Montant>=0)
       {
           //SI C'EST LA LIGNE AVEC LE NUMERO DE FACTURE
-         //COULEUR POUR FACTURE
-           if ($Ligne->NumeroFacture)
-           {
-                         echo "<tr><td bgcolor=#E13E3e>".$Ligne->Date."</td><td bgcolor=#E13E3e>".$Ligne->NumeroFacture."</td><td bgcolor=#919191> ".$Ligne->NumeroPayement."  <td bgcolor=#E13E3e>".$Ligne->DescriptionPiece."</td><td bgcolor=#E13E3e>".$Ligne->CommentaireFacture."" .$Ligne->CommentairePayement."</td><td bgcolor=#E13E3e>".$Ligne->LibelleGenerique."</td><td bgcolor=#E13E3e>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#E13E3e>".$Ligne->DateRapprochement."</td><td bgcolor=#208EA4>" .$Ligne->Montant." <td bgcolor=#919191></td></td>";
-                     
-           }
+         //COULEUR POUR FACTURe
               //SINON SI C EST LA LIGNE AVEC LE NUMERO DE PAYEMENT
               //COULEUR POUR PAYEMENT 
-           else 
+             if ($Ligne->NumeroPayement)
+               {
            {
-                          echo "<tr><td  bgcolor=#48C59A>".$Ligne->Date."</td><td bgcolor= 919191>".$Ligne->NumeroFacture."</td><td bgcolor=#48C59A> ".$Ligne->NumeroPayement." </td> <td bgcolor=48C59A>".$Ligne->DescriptionPiece."</td><td bgcolor=#48C59A>".$Ligne->CommentaireFacture."" .$Ligne->CommentairePayement."</td><td bgcolor=#48C59A>".$Ligne->LibelleGenerique." </td><td bgcolor=#48C59A>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#48C59A>".$Ligne->DateRapprochement."</td><td bgcolor=#208EA4>" .$Ligne->Montant."<td bgcolor=#919191></td>";
+                          echo "<tr><td  bgcolor=#48C59A>".$Ligne->Date."</td><td bgcolor=#48C59A> ".$Ligne->NumeroPayement." </td> <td bgcolor=48C59A>".$Ligne->DescriptionPiece."</td><td bgcolor=#48C59A>" .$Ligne->CommentairePayement."</td><td bgcolor=#48C59A>".$Ligne->LibelleGenerique." </td><td bgcolor=#48C59A>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#48C59A>".$Ligne->DateRapprochement."</td><td bgcolor=#208EA4>" .$Ligne->Montant."<td bgcolor=#919191></td>";
                   
            }
+               }
         }
         //CREDIT
             // SI MONTANT EST INF  A 0 VA DANS DEBIT 
@@ -110,18 +106,16 @@ while ($Ligne = $Connexion->sql_fetch_object($Resultat))
        {
             //SI C'EST LA LIGNE AVEC LE NUMERO DE FACTURE
             //COULEUR POUR FACTURE
-               if ($Ligne->NumeroFacture)
-               {
-                    echo "<tr><td bgcolor=#E13E3e>".$Ligne->Date."</td><td bgcolor=#E13E3e>".$Ligne->NumeroFacture."</td><td bgcolor=#919191> ".$Ligne->NumeroPayement."  <td bgcolor=#E13E3e>".$Ligne->DescriptionPiece."</td><td bgcolor= #E13E3e>".$Ligne->CommentaireFacture."" .$Ligne->CommentairePayement."</td><td bgcolor=#E13E3e>".$Ligne->LibelleGenerique." </td><td bgcolor=#E13E3e>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#E13E3e>".$Ligne->DateRapprochement."</td><td bgcolor=#919191><td bgcolor=#B6002F>" .-$Ligne->Montant."</td></td>";
-                
-               }
+          
                
               //SINON SI C EST LA LIGNE AVEC LE NUMERO DE PAYEMENT
                //COULEUR POUR PAYEMENT
-               else
+              if ($Ligne->NumeroPayement)
                {
-                     echo "<tr><td bgcolor=#48C59A>".$Ligne->Date."</td><td bgcolor=919191>".$Ligne->NumeroFacture."</td><td bgcolor=#48C59A> ".$Ligne->NumeroPayement." </td><td bgcolor=#48C59A>".$Ligne->DescriptionPiece."</td><td bgcolor=#48C59A>".$Ligne->CommentaireFacture."" .$Ligne->CommentairePayement."</td><td bgcolor=#48C59A>".$Ligne->LibelleGenerique." </td><td  bgcolor=#48C59A>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#48C59A>".$Ligne->DateRapprochement."</td><td bgcolor=#919191><td bgcolor=#B6002F>" .-$Ligne->Montant."</td></td>";
+               {
+                     echo "<tr><td bgcolor=#48C59A>".$Ligne->Date."</td><td bgcolor=#48C59A> ".$Ligne->NumeroPayement." </td><td bgcolor=#48C59A>".$Ligne->DescriptionPiece."</td><td bgcolor=#48C59A>" .$Ligne->CommentairePayement."</td><td bgcolor=#48C59A>".$Ligne->LibelleGenerique." </td><td  bgcolor=#48C59A>".$Ligne->Nom."&nbsp  &nbsp &nbsp".$Ligne->Prenom."</td><td bgcolor=#48C59A>".$Ligne->DateRapprochement."</td><td bgcolor=#919191><td bgcolor=#B6002F>" .-$Ligne->Montant."</td></td>";
                 
+               }
                }
        }
      

@@ -12,16 +12,16 @@ echo "<form action='/facture/save' method=post>
                <legend id='depense'> Depense </legend>
                     
                 <label for=libelle>Numero:</label>  
-                <input id='NumeroFacture' autofocus='' name='NumeroFacture' required='' value='".$Facture->NumeroFacture."' > <br>
+                <input id='NumeroFacture'  name='NumeroFacture'  value='".$Facture->NumeroFacture."' > <br>
              
                 <label for=date> Date:</label> 
                 <input type='date' id='date' name='Date' value='".$Facture->Date." ' ><br> 
              
                 <label for=libelle>Libelle:</label>  
-                <input id='DesignationFacture' autofocus='' name='DesignationFacture' required='' value=' ".$Facture->DesignationFacture." ' > <br>
+                <input id='DesignationFacture'  name='DesignationFacture'  value=' ".$Facture->DesignationFacture." ' > <br>
              
                 <label for=libelle> Montant:</label>  
-                <input id='PrixTTC' autofocus='' name='PrixTTC' required='' value='".$Facture->PrixTTC."'> 
+                <input id='PrixTTC'  name='PrixTTC' ' value='".$Facture->PrixTTC."'> 
                 <label for=libelle>€</label>  <br>
                 
                 <label for=Commentaire> Commentaire:</label>
@@ -89,33 +89,6 @@ echo "<form action='/facture/save' method=post>
               }
          
         echo '</select> <br>';
-
-//COMPTE LIBELLE COMPTE RESULTAT 3
-        /*
-              echo " <label for=TypeCompte>  Selectionnez si c'est cela correspond a un autre compte </label> <br>  ";
-              echo "<select name= 'ID_Compte'>";
-              
-            while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes3)) {
-                
-                                    
-               echo "<option value='".$value->ID_Compte."' >";
-            
-               //  if ($value->ID_Compte)
-                 {
-                      
-                        //TEST
-                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
-                        echo "$value->LibelleCompteResultat";
-                 }
-              }
-                 echo '</select> <br>';
-         * 
-         */
-      
-       
-        
-                
-                
                 echo " <br>
              
                 <label for=dateRapprochement> Rapprochement: </label> 
@@ -129,17 +102,11 @@ echo "<form action='/facture/save' method=post>
                  <input type=hidden name='ID_Facture' value='".$Facture->ID_Facture."'>
                 <input type=hidden name='ID_Piece' value='".$Piece->ID_Piece."'>
                 <input type=hidden name='ID_Ecriture' value='".$Ecriture->ID_Ecriture."'> 
-              
-
-       
-                    
-
+             
                  <input type='submit' value='Valider'>
                       
                 </fieldset>
                         
          ";
 
-//  <label for=primaire> Numéro de l'entite:</label> 
-   //                    <input  name='ID_Entite' value'".$Entite->ID_Entite."'> <br>
 ?>

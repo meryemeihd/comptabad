@@ -7,35 +7,40 @@ use MyException\MyException;
 *
 * -----------------------------------------------------------------------------------
 * ORM version : 1
-* Class Name : Utilisateur
+* Class Name : Exercice
 * Generator : ORMGEN by PLATEL Renaud generated on LAPTOP-32QDF5BA
-* Date Generated : 14.06.2019 14h
-* File name : Utilisateur.php
-* Table : comptabad.Utilisateur 
+* Date Generated : 19.06.2019 13h
+* File name : Exercice.php
+* Table : comptabad.Exercice 
 * -----------------------------------------------------------------------------------
 */
 
-class Utilisateur extends Common
+class Exercice extends Common
 {
 	
     // **********************
     // Variables
     // **********************
     
-    protected $ID_Utilisateur; // PRI
-    const primary_key = 'ID_Utilisateur'; // PRI
-    protected $Login;
-    protected $Motdepasse;
+    protected $ID_Exercice; // PRI
+    const primary_key = 'ID_Exercice'; // PRI
+    protected $ID_Entite;
+    protected $DateDebut;
+    protected $DateFin;
+    protected $Flag;
 
     // **********************
     // Parents object for this class (Keys)
     // **********************
     
+    protected $Parent_Exercice;
+    protected $Parent_Entite;
 
     // **********************
     // Childs array of object for this class (Foreign Keys)
     // **********************
     
+    protected $Ecriture_Exercice;
 
     // **********************
     // Interface to control the variable of this class and the update flag
@@ -46,9 +51,14 @@ class Utilisateur extends Common
     private $isToSaveOrToUpdate = 0; // Memory for update
     //Memory array of fields for update
     private $structure = array(
-        'ID_Utilisateur' => array('ID_Utilisateur', 'int', '2', '0', ''),
-        'Login' => array('Login', 'varchar-50', '0', '0', ''),
-        'Motdepasse' => array('Motdepasse', 'text', '0', '0', '')
+        'ID_Exercice' => array('ID_Exercice', 'int', '2', '0', ''),
+        'ID_Entite' => array('ID_Entite', 'int', '0', '0', ''),
+        'DateDebut' => array('DateDebut', 'date', '0', '0', ''),
+        'DateFin' => array('DateFin', 'date', '0', '0', ''),
+        'Flag' => array('Flag', 'int', '0', '0', ''),
+        'Parent_Exercice' => array('Parent_Exercice', 'ParentObject', '1', '0', ''),
+        'Parent_Entite' => array('Parent_Entite', 'ParentObject', '1', '0', ''),
+        'Ecriture_Exercice' => array('Ecriture_Exercice', 'ChildObject', '1', '0', '')
     );
 
     // **********************
@@ -59,18 +69,22 @@ class Utilisateur extends Common
         global $Connexion;
         if((isset($val))&&(trim($val)!=""))
         {
-            $query = $Connexion->sql_query("SELECT * FROM `Utilisateur` WHERE `$property` = ".parent::quote($this->structure[$property],$val) ." LIMIT 1");
+            $query = $Connexion->sql_query("SELECT * FROM `Exercice` WHERE `$property` = ".parent::quote($this->structure[$property],$val) ." LIMIT 1");
 
             if($Connexion->sql_num_rows($query) != 0)
             {
                 while($row = $Connexion->sql_fetch_object($query))
                 {
-                    $this->ID_Utilisateur = $this->formater($this->structure['ID_Utilisateur'],$row->ID_Utilisateur);
-                    $this->structure['ID_Utilisateur'][4] = $this->ID_Utilisateur;
-                    $this->Login = $this->formater($this->structure['Login'],$row->Login);
-                    $this->structure['Login'][4] = $this->Login;
-                    $this->Motdepasse = $this->formater($this->structure['Motdepasse'],$row->Motdepasse);
-                    $this->structure['Motdepasse'][4] = $this->Motdepasse;
+                    $this->ID_Exercice = $this->formater($this->structure['ID_Exercice'],$row->ID_Exercice);
+                    $this->structure['ID_Exercice'][4] = $this->ID_Exercice;
+                    $this->ID_Entite = $this->formater($this->structure['ID_Entite'],$row->ID_Entite);
+                    $this->structure['ID_Entite'][4] = $this->ID_Entite;
+                    $this->DateDebut = $this->formater($this->structure['DateDebut'],$row->DateDebut);
+                    $this->structure['DateDebut'][4] = $this->DateDebut;
+                    $this->DateFin = $this->formater($this->structure['DateFin'],$row->DateFin);
+                    $this->structure['DateFin'][4] = $this->DateFin;
+                    $this->Flag = $this->formater($this->structure['Flag'],$row->Flag);
+                    $this->structure['Flag'][4] = $this->Flag;
                     
                 }
             }
@@ -165,67 +179,129 @@ class Utilisateur extends Common
             return $this->structure;		
     }
 	
-    public function get_ID_Utilisateur()
+    public function get_ID_Exercice()
     {
-        return stripslashes($this->ID_Utilisateur);
+        return stripslashes($this->ID_Exercice);
     }
 
-    public function get_Login()
+    public function get_ID_Entite()
     {
-        return stripslashes($this->Login);
+        return stripslashes($this->ID_Entite);
     }
 
-    public function set_Login($valeur = null)
+    public function set_ID_Entite($valeur = null)
     {
-        if ( ( $this->Login != parent::quote($this->structure['Login'][1],$valeur) ) && ( $this->Login != $valeur ) )
+        if ( ( $this->ID_Entite != parent::quote($this->structure['ID_Entite'][1],$valeur) ) && ( $this->ID_Entite != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->Login = NULL;
+                $this->ID_Entite = NULL;
             }
             else
             {
-                $this->Login = parent::quote($this->structure['Login'][1],$valeur);
+                $this->ID_Entite = parent::quote($this->structure['ID_Entite'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['Login']["3"]=1;
-            $this->structure['Login']["4"] = $this->Login;
+            $this->structure['ID_Entite']["3"]=1;
+            $this->structure['ID_Entite']["4"] = $this->ID_Entite;
 
-            $test = explode("-",$this->structure['Login'][1]);
+            $test = explode("-",$this->structure['ID_Entite'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['Login']["4"] = substr($this->structure['Login']["4"],0,$test["1"]);
+                $this->structure['ID_Entite']["4"] = substr($this->structure['ID_Entite']["4"],0,$test["1"]);
             }
             
         }
         return $valeur;
     }
 
-    public function get_Motdepasse()
+    public function get_DateDebut()
     {
-        return stripslashes($this->Motdepasse);
+        return stripslashes($this->DateDebut);
     }
 
-    public function set_Motdepasse($valeur = null)
+    public function set_DateDebut($valeur = null)
     {
-        if ( ( $this->Motdepasse != parent::quote($this->structure['Motdepasse'][1],$valeur) ) && ( $this->Motdepasse != $valeur ) )
+        if ( ( $this->DateDebut != parent::quote($this->structure['DateDebut'][1],$valeur) ) && ( $this->DateDebut != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->Motdepasse = NULL;
+                $this->DateDebut = NULL;
             }
             else
             {
-                $this->Motdepasse = parent::quote($this->structure['Motdepasse'][1],$valeur);
+                $this->DateDebut = parent::quote($this->structure['DateDebut'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['Motdepasse']["3"]=1;
-            $this->structure['Motdepasse']["4"] = $this->Motdepasse;
+            $this->structure['DateDebut']["3"]=1;
+            $this->structure['DateDebut']["4"] = $this->DateDebut;
 
-            $test = explode("-",$this->structure['Motdepasse'][1]);
+            $test = explode("-",$this->structure['DateDebut'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['Motdepasse']["4"] = substr($this->structure['Motdepasse']["4"],0,$test["1"]);
+                $this->structure['DateDebut']["4"] = substr($this->structure['DateDebut']["4"],0,$test["1"]);
+            }
+            
+        }
+        return $valeur;
+    }
+
+    public function get_DateFin()
+    {
+        return stripslashes($this->DateFin);
+    }
+
+    public function set_DateFin($valeur = null)
+    {
+        if ( ( $this->DateFin != parent::quote($this->structure['DateFin'][1],$valeur) ) && ( $this->DateFin != $valeur ) )
+        {	
+            if(is_null($valeur))
+            {
+                $this->DateFin = NULL;
+            }
+            else
+            {
+                $this->DateFin = parent::quote($this->structure['DateFin'][1],$valeur);
+            }
+            $this->isToSaveOrToUpdate=1;
+            $this->structure['DateFin']["3"]=1;
+            $this->structure['DateFin']["4"] = $this->DateFin;
+
+            $test = explode("-",$this->structure['DateFin'][1]);
+            if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
+            {
+                $this->structure['DateFin']["4"] = substr($this->structure['DateFin']["4"],0,$test["1"]);
+            }
+            
+        }
+        return $valeur;
+    }
+
+    public function get_Flag()
+    {
+        return stripslashes($this->Flag);
+    }
+
+    public function set_Flag($valeur = null)
+    {
+        if ( ( $this->Flag != parent::quote($this->structure['Flag'][1],$valeur) ) && ( $this->Flag != $valeur ) )
+        {	
+            if(is_null($valeur))
+            {
+                $this->Flag = NULL;
+            }
+            else
+            {
+                $this->Flag = parent::quote($this->structure['Flag'][1],$valeur);
+            }
+            $this->isToSaveOrToUpdate=1;
+            $this->structure['Flag']["3"]=1;
+            $this->structure['Flag']["4"] = $this->Flag;
+
+            $test = explode("-",$this->structure['Flag'][1]);
+            if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
+            {
+                $this->structure['Flag']["4"] = substr($this->structure['Flag']["4"],0,$test["1"]);
             }
             
         }
@@ -236,9 +312,134 @@ class Utilisateur extends Common
     // Specific get & set method for parents objects
     // **********************
 
+    public function get_Parent_Exercice($forced = 0)
+    {
+
+            $this->Parent_Exercice = new entite($this->ID_Exercice);
+
+            return $this->Parent_Exercice;
+    }
+
+    public function set_Parent_Exercice($entite)
+    {
+            $this->ID_Exercice=$entite->ID_Entite;
+            $this->structure["ID_Exercice"][3]=1;
+            $this->structure["ID_Exercice"][4]=$entite->ID_Entite;
+            $this->isToSaveOrToUpdate=1;
+            $this->Parent_Exercice=$entite;
+            return ($entite);
+    }
+
+    public function get_Parent_Entite($forced = 0)
+    {
+
+            $this->Parent_Entite = new entite($this->ID_Entite);
+
+            return $this->Parent_Entite;
+    }
+
+    public function set_Parent_Entite($entite)
+    {
+            $this->ID_Entite=$entite->ID_Entite;
+            $this->structure["ID_Entite"][3]=1;
+            $this->structure["ID_Entite"][4]=$entite->ID_Entite;
+            $this->isToSaveOrToUpdate=1;
+            $this->Parent_Entite=$entite;
+            return ($entite);
+    }
+
     // **********************
     // Specific get & set method for childs objets
     // **********************
+    
+    public function get_Ecriture_Exercice()
+    {
+        global $Connexion;
+
+        if ((is_null($this->Ecriture_Exercice))&&(!is_null($this->ID_Exercice)))
+        {
+            $query="SELECT * FROM `ecriture` WHERE ID_Exercice = ".$this->ID_Exercice." ORDER BY ID_Ecriture";
+            $result=$Connexion->sql_query($query);
+            while($row = $Connexion->sql_fetch_object($result,'MyORM\ecriture'))
+            {
+                $this->add_Ecriture_Exercice($row);
+            }
+        }
+        return ($this->Ecriture_Exercice);
+    }
+
+    public function set_Ecriture_Exercice($ecritures)
+    {
+        if (!isset($this->Ecriture_Exercice) || (isset($this->Ecriture_Exercice) && count($this->Ecriture_Exercice)==0))
+            foreach ($ecritures as $var)
+                add_Ecriture_Exercice($var);
+        else
+            throw new DALException( "Can set Ecriture_Exercice cause actual Ecriture_Exercice is not empty");
+        return ($ecritures);
+    }
+
+    public function add_Ecriture_Exercice(ecriture $ecriture)
+    {
+        if ($ecriture->ID_Exercice!=$this->ID_Exercice)
+            $ecriture->set_ID_Exercice($this->ID_Exercice);
+        if (isset($this->Ecriture_Exercice) && is_array($this->Ecriture_Exercice)) {
+            $count=count($this->Ecriture_Exercice);
+        }
+        else {
+            $count=0;
+        }
+        while (isset($this->Ecriture_Exercice[$count]))
+            $count++;
+        $this->Ecriture_Exercice[$count]=$ecriture;
+    }
+
+    public function remove_Ecriture_Exercice(ecriture $removeecriture)
+    {
+        foreach ($this->Ecriture_Exercice as $var)
+        {
+            if ($removeecriture == $var)
+            {
+                $var->delete();
+                $this->ecriture = null;
+            }
+        }
+    }
+
+    protected function save_Ecriture_Exercice($transaction = null)
+    {
+        foreach ($this->Ecriture_Exercice as $ecriture)
+        {
+            if ($ecriture->ID_Exercice!=$this->ID_Exercice)
+                $ecriture->set_ID_Exercice($this->ID_Exercice);
+            $ecriture->save($transaction);
+        }
+    }
+
+    public function delete_Ecriture_Exercice($transaction = null)
+    {
+        global $Connexion;
+        if (isset($this->Ecriture_Exercice))
+            foreach ($this->Ecriture_Exercice as $ecriture)
+            {
+                $ecriture->delete($transaction);
+            }
+
+        $query = "DELETE FROM `ecriture` WHERE ID_Exercice = ".$this->ID_Exercice;
+        $result = $Connexion->sql_query($query);
+        if ($Connexion->sql_error($result))
+        {
+            $erreur=$Connexion->sql_error($result)."<br>".$query;
+            if ($transaction=="On")
+            {
+                $Connexion->sql_rollbacktransaction();
+            }
+            throw new DALException($erreur);
+        }
+        else
+            return $Connexion->sql_affected_rows($result);
+
+        $this->Ecriture_Exercice= null;
+    }
     
     // **********************
     // DELETE
@@ -250,7 +451,7 @@ class Utilisateur extends Common
         $thistransaction = "Off";
         $return = null;
 
-        if ((isset($this->ID_Utilisateur))&&($this->ID_Utilisateur!=0))
+        if ((isset($this->ID_Exercice))&&($this->ID_Exercice!=0))
         {
             if (is_null($transaction))
             {
@@ -259,9 +460,13 @@ class Utilisateur extends Common
                 if ($Connexion->TransactionMode == 1)
                     $Connexion->sql_starttransaction();
             }
-	if (($transaction=="On"))
+	
+            if ( null !== $this->get_Ecriture_Exercice() && (count($this->get_Ecriture_Exercice())!=0) && (MyORMCASCADE) )
+                $this->delete_Ecriture_Exercice($transaction);
+
+            if (($transaction=="On"))
             {
-                $query = parent::makequery('DELETE', $Connexion->Database, 'Utilisateur', $this->structure);
+                $query = parent::makequery('DELETE', $Connexion->Database, 'Exercice', $this->structure);
                 $Result = $Connexion->sql_query($query);
                 if ($Connexion->sql_error($Result))
                 {
@@ -295,30 +500,39 @@ class Utilisateur extends Common
         global $Connexion;
         $thistransaction = "Off";
 
-        if ((is_null($this->ID_Utilisateur))||($this->ID_Utilisateur==0))
+        if ((is_null($this->ID_Exercice))||($this->ID_Exercice==0))
         {
             $this->isToSaveOrToUpdate=1;
             $this->isNew=1;
         }
         
+        if (!is_null($this->Parent_Exercice))
+                $this->ID_Exercice = $this->set_ID_Entite($this->Parent_Exercice->save($transaction));	 
+        
+        if (!is_null($this->Parent_Entite))
+                $this->ID_Entite = $this->set_ID_Entite($this->Parent_Entite->save($transaction));	 
+        
         if ($this->isToSaveOrToUpdate==1)
         {
 
-            if ((isset($this->ID_Utilisateur))&&($this->ID_Utilisateur!="0")&&($this->isNew!=1))
+            if ((isset($this->ID_Exercice))&&($this->ID_Exercice!="0")&&($this->isNew!=1))
             {
-                $query = parent::makequery('UPDATE', $Connexion->Database, 'Utilisateur', $this->structure);
+                $query = parent::makequery('UPDATE', $Connexion->Database, 'Exercice', $this->structure);
                 $result=$Connexion->sql_query($query);
             }
             else
             {
-                $query = parent::makequery('INSERT', $Connexion->Database, 'Utilisateur', $this->structure);
+                $query = parent::makequery('INSERT', $Connexion->Database, 'Exercice', $this->structure);
                 $Connexion->sql_query($query);
-                $this->ID_Utilisateur=$Connexion->sql_insert_id();
-                $this->structure['ID_Utilisateur']["4"] = $this->ID_Utilisateur;
+                $this->ID_Exercice=$Connexion->sql_insert_id();
+                $this->structure['ID_Exercice']["4"] = $this->ID_Exercice;
                 $this->isNew=0;
             }
         }
 	
+        if (!is_null($this->Ecriture_Exercice))
+                $this->save_Ecriture_Exercice($transaction);
+        
         $this->isToSaveOrToUpdate=0;
         foreach ($this->structure as $field)
             if(isset($field[0]))
@@ -326,14 +540,14 @@ class Utilisateur extends Common
                 $this->structure[$field[0]][3]=0;
             }
 
-        return $this->ID_Utilisateur;
+        return $this->ID_Exercice;
     }
 
     public function last_insert($property = self::primary_key)
     {
         global $Connexion;
 
-        $query = $Connexion->sql_query("SELECT $property AS last FROM `Utilisateur` ORDER BY ".self::primary_key." DESC LIMIT 1");
+        $query = $Connexion->sql_query("SELECT $property AS last FROM `Exercice` ORDER BY ".self::primary_key." DESC LIMIT 1");
         $last = $Connexion->sql_fetch_row($query);
 
         return $last["last"];
@@ -463,8 +677,8 @@ class Utilisateur extends Common
     public function __clone()
     {
         $this->LoadAllChilds();
-        $this->ID_Utilisateur = null;
-        $this->structure['ID_Utilisateur'][4] = "";
+        $this->ID_Exercice = null;
+        $this->structure['ID_Exercice'][4] = "";
         $this->isNew = 1;
         $this->isToSaveOrToUpdate = 1;
         foreach ($this->structure as $field)
@@ -484,11 +698,14 @@ class Utilisateur extends Common
 
     public function LoadAllParents()
     {
-        
+        if (!is_null($this->Ecriture_Exercice))
+            $this->get_Ecriture_Exercice();
+
     }
 	
     public function LoadAllChilds()
     {
+        $this->get_Ecriture_Exercice();
     }
 		
     //endofclass

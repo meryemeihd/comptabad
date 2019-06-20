@@ -46,8 +46,6 @@
            if (isset($_SESSION['utilisateur']))
            
            
-               
-           
                    echo "  <div id='accueil'>
 
 	<div class='tab' id='d_men_action'>
