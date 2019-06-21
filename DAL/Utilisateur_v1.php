@@ -7,40 +7,39 @@ use MyException\MyException;
 *
 * -----------------------------------------------------------------------------------
 * ORM version : 1
-* Class Name : Exercice
+* Class Name : Utilisateur
 * Generator : ORMGEN by PLATEL Renaud generated on LAPTOP-32QDF5BA
-* Date Generated : 19.06.2019 13h
-* File name : Exercice.php
-* Table : comptabad.Exercice 
+* Date Generated : 20.06.2019 10h
+* File name : Utilisateur.php
+* Table : comptabad.Utilisateur 
 * -----------------------------------------------------------------------------------
 */
 
-class Exercice extends Common
+class Utilisateur extends Common
 {
 	
     // **********************
     // Variables
     // **********************
     
-    protected $ID_Exercice; // PRI
-    const primary_key = 'ID_Exercice'; // PRI
-    protected $ID_Entite;
-    protected $DateDebut;
-    protected $DateFin;
-    protected $Flag;
+    protected $ID_Utilisateur; // PRI
+    const primary_key = 'ID_Utilisateur'; // PRI
+    protected $Nom;
+    protected $Prenom;
+    protected $Fonction;
+    protected $Mail;
+    protected $Login;
+    protected $Motdepasse;
 
     // **********************
     // Parents object for this class (Keys)
     // **********************
     
-    protected $Parent_Exercice;
-    protected $Parent_Entite;
 
     // **********************
     // Childs array of object for this class (Foreign Keys)
     // **********************
     
-    protected $Ecriture_Exercice;
 
     // **********************
     // Interface to control the variable of this class and the update flag
@@ -51,14 +50,13 @@ class Exercice extends Common
     private $isToSaveOrToUpdate = 0; // Memory for update
     //Memory array of fields for update
     private $structure = array(
-        'ID_Exercice' => array('ID_Exercice', 'int', '2', '0', ''),
-        'ID_Entite' => array('ID_Entite', 'int', '0', '0', ''),
-        'DateDebut' => array('DateDebut', 'date', '0', '0', ''),
-        'DateFin' => array('DateFin', 'date', '0', '0', ''),
-        'Flag' => array('Flag', 'int', '0', '0', ''),
-        'Parent_Exercice' => array('Parent_Exercice', 'ParentObject', '1', '0', ''),
-        'Parent_Entite' => array('Parent_Entite', 'ParentObject', '1', '0', ''),
-        'Ecriture_Exercice' => array('Ecriture_Exercice', 'ChildObject', '1', '0', '')
+        'ID_Utilisateur' => array('ID_Utilisateur', 'int', '2', '0', ''),
+        'Nom' => array('Nom', 'varchar-100', '1', '0', ''),
+        'Prenom' => array('Prenom', 'varchar-100', '1', '0', ''),
+        'Fonction' => array('Fonction', 'varchar-100', '1', '0', ''),
+        'Mail' => array('Mail', 'varchar-100', '1', '0', ''),
+        'Login' => array('Login', 'varchar-50', '0', '0', ''),
+        'Motdepasse' => array('Motdepasse', 'text', '0', '0', '')
     );
 
     // **********************
@@ -69,22 +67,26 @@ class Exercice extends Common
         global $Connexion;
         if((isset($val))&&(trim($val)!=""))
         {
-            $query = $Connexion->sql_query("SELECT * FROM `Exercice` WHERE `$property` = ".parent::quote($this->structure[$property],$val) ." LIMIT 1");
+            $query = $Connexion->sql_query("SELECT * FROM `Utilisateur` WHERE `$property` = ".parent::quote($this->structure[$property],$val) ." LIMIT 1");
 
             if($Connexion->sql_num_rows($query) != 0)
             {
                 while($row = $Connexion->sql_fetch_object($query))
                 {
-                    $this->ID_Exercice = $this->formater($this->structure['ID_Exercice'],$row->ID_Exercice);
-                    $this->structure['ID_Exercice'][4] = $this->ID_Exercice;
-                    $this->ID_Entite = $this->formater($this->structure['ID_Entite'],$row->ID_Entite);
-                    $this->structure['ID_Entite'][4] = $this->ID_Entite;
-                    $this->DateDebut = $this->formater($this->structure['DateDebut'],$row->DateDebut);
-                    $this->structure['DateDebut'][4] = $this->DateDebut;
-                    $this->DateFin = $this->formater($this->structure['DateFin'],$row->DateFin);
-                    $this->structure['DateFin'][4] = $this->DateFin;
-                    $this->Flag = $this->formater($this->structure['Flag'],$row->Flag);
-                    $this->structure['Flag'][4] = $this->Flag;
+                    $this->ID_Utilisateur = $this->formater($this->structure['ID_Utilisateur'],$row->ID_Utilisateur);
+                    $this->structure['ID_Utilisateur'][4] = $this->ID_Utilisateur;
+                    $this->Nom = $this->formater($this->structure['Nom'],$row->Nom);
+                    $this->structure['Nom'][4] = $this->Nom;
+                    $this->Prenom = $this->formater($this->structure['Prenom'],$row->Prenom);
+                    $this->structure['Prenom'][4] = $this->Prenom;
+                    $this->Fonction = $this->formater($this->structure['Fonction'],$row->Fonction);
+                    $this->structure['Fonction'][4] = $this->Fonction;
+                    $this->Mail = $this->formater($this->structure['Mail'],$row->Mail);
+                    $this->structure['Mail'][4] = $this->Mail;
+                    $this->Login = $this->formater($this->structure['Login'],$row->Login);
+                    $this->structure['Login'][4] = $this->Login;
+                    $this->Motdepasse = $this->formater($this->structure['Motdepasse'],$row->Motdepasse);
+                    $this->structure['Motdepasse'][4] = $this->Motdepasse;
                     
                 }
             }
@@ -179,129 +181,191 @@ class Exercice extends Common
             return $this->structure;		
     }
 	
-    public function get_ID_Exercice()
+    public function get_ID_Utilisateur()
     {
-        return stripslashes($this->ID_Exercice);
+        return stripslashes($this->ID_Utilisateur);
     }
 
-    public function get_ID_Entite()
+    public function get_Nom()
     {
-        return stripslashes($this->ID_Entite);
+        return stripslashes($this->Nom);
     }
 
-    public function set_ID_Entite($valeur = null)
+    public function set_Nom($valeur = null)
     {
-        if ( ( $this->ID_Entite != parent::quote($this->structure['ID_Entite'][1],$valeur) ) && ( $this->ID_Entite != $valeur ) )
+        if ( ( $this->Nom != parent::quote($this->structure['Nom'][1],$valeur) ) && ( $this->Nom != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->ID_Entite = NULL;
+                $this->Nom = NULL;
             }
             else
             {
-                $this->ID_Entite = parent::quote($this->structure['ID_Entite'][1],$valeur);
+                $this->Nom = parent::quote($this->structure['Nom'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['ID_Entite']["3"]=1;
-            $this->structure['ID_Entite']["4"] = $this->ID_Entite;
+            $this->structure['Nom']["3"]=1;
+            $this->structure['Nom']["4"] = $this->Nom;
 
-            $test = explode("-",$this->structure['ID_Entite'][1]);
+            $test = explode("-",$this->structure['Nom'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['ID_Entite']["4"] = substr($this->structure['ID_Entite']["4"],0,$test["1"]);
+                $this->structure['Nom']["4"] = substr($this->structure['Nom']["4"],0,$test["1"]);
             }
             
         }
         return $valeur;
     }
 
-    public function get_DateDebut()
+    public function get_Prenom()
     {
-        return stripslashes($this->DateDebut);
+        return stripslashes($this->Prenom);
     }
 
-    public function set_DateDebut($valeur = null)
+    public function set_Prenom($valeur = null)
     {
-        if ( ( $this->DateDebut != parent::quote($this->structure['DateDebut'][1],$valeur) ) && ( $this->DateDebut != $valeur ) )
+        if ( ( $this->Prenom != parent::quote($this->structure['Prenom'][1],$valeur) ) && ( $this->Prenom != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->DateDebut = NULL;
+                $this->Prenom = NULL;
             }
             else
             {
-                $this->DateDebut = parent::quote($this->structure['DateDebut'][1],$valeur);
+                $this->Prenom = parent::quote($this->structure['Prenom'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['DateDebut']["3"]=1;
-            $this->structure['DateDebut']["4"] = $this->DateDebut;
+            $this->structure['Prenom']["3"]=1;
+            $this->structure['Prenom']["4"] = $this->Prenom;
 
-            $test = explode("-",$this->structure['DateDebut'][1]);
+            $test = explode("-",$this->structure['Prenom'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['DateDebut']["4"] = substr($this->structure['DateDebut']["4"],0,$test["1"]);
+                $this->structure['Prenom']["4"] = substr($this->structure['Prenom']["4"],0,$test["1"]);
             }
             
         }
         return $valeur;
     }
 
-    public function get_DateFin()
+    public function get_Fonction()
     {
-        return stripslashes($this->DateFin);
+        return stripslashes($this->Fonction);
     }
 
-    public function set_DateFin($valeur = null)
+    public function set_Fonction($valeur = null)
     {
-        if ( ( $this->DateFin != parent::quote($this->structure['DateFin'][1],$valeur) ) && ( $this->DateFin != $valeur ) )
+        if ( ( $this->Fonction != parent::quote($this->structure['Fonction'][1],$valeur) ) && ( $this->Fonction != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->DateFin = NULL;
+                $this->Fonction = NULL;
             }
             else
             {
-                $this->DateFin = parent::quote($this->structure['DateFin'][1],$valeur);
+                $this->Fonction = parent::quote($this->structure['Fonction'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['DateFin']["3"]=1;
-            $this->structure['DateFin']["4"] = $this->DateFin;
+            $this->structure['Fonction']["3"]=1;
+            $this->structure['Fonction']["4"] = $this->Fonction;
 
-            $test = explode("-",$this->structure['DateFin'][1]);
+            $test = explode("-",$this->structure['Fonction'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['DateFin']["4"] = substr($this->structure['DateFin']["4"],0,$test["1"]);
+                $this->structure['Fonction']["4"] = substr($this->structure['Fonction']["4"],0,$test["1"]);
             }
             
         }
         return $valeur;
     }
 
-    public function get_Flag()
+    public function get_Mail()
     {
-        return stripslashes($this->Flag);
+        return stripslashes($this->Mail);
     }
 
-    public function set_Flag($valeur = null)
+    public function set_Mail($valeur = null)
     {
-        if ( ( $this->Flag != parent::quote($this->structure['Flag'][1],$valeur) ) && ( $this->Flag != $valeur ) )
+        if ( ( $this->Mail != parent::quote($this->structure['Mail'][1],$valeur) ) && ( $this->Mail != $valeur ) )
         {	
             if(is_null($valeur))
             {
-                $this->Flag = NULL;
+                $this->Mail = NULL;
             }
             else
             {
-                $this->Flag = parent::quote($this->structure['Flag'][1],$valeur);
+                $this->Mail = parent::quote($this->structure['Mail'][1],$valeur);
             }
             $this->isToSaveOrToUpdate=1;
-            $this->structure['Flag']["3"]=1;
-            $this->structure['Flag']["4"] = $this->Flag;
+            $this->structure['Mail']["3"]=1;
+            $this->structure['Mail']["4"] = $this->Mail;
 
-            $test = explode("-",$this->structure['Flag'][1]);
+            $test = explode("-",$this->structure['Mail'][1]);
             if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
             {
-                $this->structure['Flag']["4"] = substr($this->structure['Flag']["4"],0,$test["1"]);
+                $this->structure['Mail']["4"] = substr($this->structure['Mail']["4"],0,$test["1"]);
+            }
+            
+        }
+        return $valeur;
+    }
+
+    public function get_Login()
+    {
+        return stripslashes($this->Login);
+    }
+
+    public function set_Login($valeur = null)
+    {
+        if ( ( $this->Login != parent::quote($this->structure['Login'][1],$valeur) ) && ( $this->Login != $valeur ) )
+        {	
+            if(is_null($valeur))
+            {
+                $this->Login = NULL;
+            }
+            else
+            {
+                $this->Login = parent::quote($this->structure['Login'][1],$valeur);
+            }
+            $this->isToSaveOrToUpdate=1;
+            $this->structure['Login']["3"]=1;
+            $this->structure['Login']["4"] = $this->Login;
+
+            $test = explode("-",$this->structure['Login'][1]);
+            if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
+            {
+                $this->structure['Login']["4"] = substr($this->structure['Login']["4"],0,$test["1"]);
+            }
+            
+        }
+        return $valeur;
+    }
+
+    public function get_Motdepasse()
+    {
+        return stripslashes($this->Motdepasse);
+    }
+
+    public function set_Motdepasse($valeur = null)
+    {
+        if ( ( $this->Motdepasse != parent::quote($this->structure['Motdepasse'][1],$valeur) ) && ( $this->Motdepasse != $valeur ) )
+        {	
+            if(is_null($valeur))
+            {
+                $this->Motdepasse = NULL;
+            }
+            else
+            {
+                $this->Motdepasse = parent::quote($this->structure['Motdepasse'][1],$valeur);
+            }
+            $this->isToSaveOrToUpdate=1;
+            $this->structure['Motdepasse']["3"]=1;
+            $this->structure['Motdepasse']["4"] = $this->Motdepasse;
+
+            $test = explode("-",$this->structure['Motdepasse'][1]);
+            if ( ( $test["0"] == "varchar" ) && ( isset( $test["1"] ) ) )
+            {
+                $this->structure['Motdepasse']["4"] = substr($this->structure['Motdepasse']["4"],0,$test["1"]);
             }
             
         }
@@ -312,134 +376,9 @@ class Exercice extends Common
     // Specific get & set method for parents objects
     // **********************
 
-    public function get_Parent_Exercice($forced = 0)
-    {
-
-            $this->Parent_Exercice = new entite($this->ID_Exercice);
-
-            return $this->Parent_Exercice;
-    }
-
-    public function set_Parent_Exercice($entite)
-    {
-            $this->ID_Exercice=$entite->ID_Entite;
-            $this->structure["ID_Exercice"][3]=1;
-            $this->structure["ID_Exercice"][4]=$entite->ID_Entite;
-            $this->isToSaveOrToUpdate=1;
-            $this->Parent_Exercice=$entite;
-            return ($entite);
-    }
-
-    public function get_Parent_Entite($forced = 0)
-    {
-
-            $this->Parent_Entite = new entite($this->ID_Entite);
-
-            return $this->Parent_Entite;
-    }
-
-    public function set_Parent_Entite($entite)
-    {
-            $this->ID_Entite=$entite->ID_Entite;
-            $this->structure["ID_Entite"][3]=1;
-            $this->structure["ID_Entite"][4]=$entite->ID_Entite;
-            $this->isToSaveOrToUpdate=1;
-            $this->Parent_Entite=$entite;
-            return ($entite);
-    }
-
     // **********************
     // Specific get & set method for childs objets
     // **********************
-    
-    public function get_Ecriture_Exercice()
-    {
-        global $Connexion;
-
-        if ((is_null($this->Ecriture_Exercice))&&(!is_null($this->ID_Exercice)))
-        {
-            $query="SELECT * FROM `ecriture` WHERE ID_Exercice = ".$this->ID_Exercice." ORDER BY ID_Ecriture";
-            $result=$Connexion->sql_query($query);
-            while($row = $Connexion->sql_fetch_object($result,'MyORM\ecriture'))
-            {
-                $this->add_Ecriture_Exercice($row);
-            }
-        }
-        return ($this->Ecriture_Exercice);
-    }
-
-    public function set_Ecriture_Exercice($ecritures)
-    {
-        if (!isset($this->Ecriture_Exercice) || (isset($this->Ecriture_Exercice) && count($this->Ecriture_Exercice)==0))
-            foreach ($ecritures as $var)
-                add_Ecriture_Exercice($var);
-        else
-            throw new DALException( "Can set Ecriture_Exercice cause actual Ecriture_Exercice is not empty");
-        return ($ecritures);
-    }
-
-    public function add_Ecriture_Exercice(ecriture $ecriture)
-    {
-        if ($ecriture->ID_Exercice!=$this->ID_Exercice)
-            $ecriture->set_ID_Exercice($this->ID_Exercice);
-        if (isset($this->Ecriture_Exercice) && is_array($this->Ecriture_Exercice)) {
-            $count=count($this->Ecriture_Exercice);
-        }
-        else {
-            $count=0;
-        }
-        while (isset($this->Ecriture_Exercice[$count]))
-            $count++;
-        $this->Ecriture_Exercice[$count]=$ecriture;
-    }
-
-    public function remove_Ecriture_Exercice(ecriture $removeecriture)
-    {
-        foreach ($this->Ecriture_Exercice as $var)
-        {
-            if ($removeecriture == $var)
-            {
-                $var->delete();
-                $this->ecriture = null;
-            }
-        }
-    }
-
-    protected function save_Ecriture_Exercice($transaction = null)
-    {
-        foreach ($this->Ecriture_Exercice as $ecriture)
-        {
-            if ($ecriture->ID_Exercice!=$this->ID_Exercice)
-                $ecriture->set_ID_Exercice($this->ID_Exercice);
-            $ecriture->save($transaction);
-        }
-    }
-
-    public function delete_Ecriture_Exercice($transaction = null)
-    {
-        global $Connexion;
-        if (isset($this->Ecriture_Exercice))
-            foreach ($this->Ecriture_Exercice as $ecriture)
-            {
-                $ecriture->delete($transaction);
-            }
-
-        $query = "DELETE FROM `ecriture` WHERE ID_Exercice = ".$this->ID_Exercice;
-        $result = $Connexion->sql_query($query);
-        if ($Connexion->sql_error($result))
-        {
-            $erreur=$Connexion->sql_error($result)."<br>".$query;
-            if ($transaction=="On")
-            {
-                $Connexion->sql_rollbacktransaction();
-            }
-            throw new DALException($erreur);
-        }
-        else
-            return $Connexion->sql_affected_rows($result);
-
-        $this->Ecriture_Exercice= null;
-    }
     
     // **********************
     // DELETE
@@ -451,7 +390,7 @@ class Exercice extends Common
         $thistransaction = "Off";
         $return = null;
 
-        if ((isset($this->ID_Exercice))&&($this->ID_Exercice!=0))
+        if ((isset($this->ID_Utilisateur))&&($this->ID_Utilisateur!=0))
         {
             if (is_null($transaction))
             {
@@ -460,13 +399,9 @@ class Exercice extends Common
                 if ($Connexion->TransactionMode == 1)
                     $Connexion->sql_starttransaction();
             }
-	
-            if ( null !== $this->get_Ecriture_Exercice() && (count($this->get_Ecriture_Exercice())!=0) && (MyORMCASCADE) )
-                $this->delete_Ecriture_Exercice($transaction);
-
-            if (($transaction=="On"))
+	if (($transaction=="On"))
             {
-                $query = parent::makequery('DELETE', $Connexion->Database, 'Exercice', $this->structure);
+                $query = parent::makequery('DELETE', $Connexion->Database, 'Utilisateur', $this->structure);
                 $Result = $Connexion->sql_query($query);
                 if ($Connexion->sql_error($Result))
                 {
@@ -500,39 +435,30 @@ class Exercice extends Common
         global $Connexion;
         $thistransaction = "Off";
 
-        if ((is_null($this->ID_Exercice))||($this->ID_Exercice==0))
+        if ((is_null($this->ID_Utilisateur))||($this->ID_Utilisateur==0))
         {
             $this->isToSaveOrToUpdate=1;
             $this->isNew=1;
         }
         
-        if (!is_null($this->Parent_Exercice))
-                $this->ID_Exercice = $this->set_ID_Entite($this->Parent_Exercice->save($transaction));	 
-        
-        if (!is_null($this->Parent_Entite))
-                $this->ID_Entite = $this->set_ID_Entite($this->Parent_Entite->save($transaction));	 
-        
         if ($this->isToSaveOrToUpdate==1)
         {
 
-            if ((isset($this->ID_Exercice))&&($this->ID_Exercice!="0")&&($this->isNew!=1))
+            if ((isset($this->ID_Utilisateur))&&($this->ID_Utilisateur!="0")&&($this->isNew!=1))
             {
-                $query = parent::makequery('UPDATE', $Connexion->Database, 'Exercice', $this->structure);
+                $query = parent::makequery('UPDATE', $Connexion->Database, 'Utilisateur', $this->structure);
                 $result=$Connexion->sql_query($query);
             }
             else
             {
-                $query = parent::makequery('INSERT', $Connexion->Database, 'Exercice', $this->structure);
+                $query = parent::makequery('INSERT', $Connexion->Database, 'Utilisateur', $this->structure);
                 $Connexion->sql_query($query);
-                $this->ID_Exercice=$Connexion->sql_insert_id();
-                $this->structure['ID_Exercice']["4"] = $this->ID_Exercice;
+                $this->ID_Utilisateur=$Connexion->sql_insert_id();
+                $this->structure['ID_Utilisateur']["4"] = $this->ID_Utilisateur;
                 $this->isNew=0;
             }
         }
 	
-        if (!is_null($this->Ecriture_Exercice))
-                $this->save_Ecriture_Exercice($transaction);
-        
         $this->isToSaveOrToUpdate=0;
         foreach ($this->structure as $field)
             if(isset($field[0]))
@@ -540,14 +466,14 @@ class Exercice extends Common
                 $this->structure[$field[0]][3]=0;
             }
 
-        return $this->ID_Exercice;
+        return $this->ID_Utilisateur;
     }
 
     public function last_insert($property = self::primary_key)
     {
         global $Connexion;
 
-        $query = $Connexion->sql_query("SELECT $property AS last FROM `Exercice` ORDER BY ".self::primary_key." DESC LIMIT 1");
+        $query = $Connexion->sql_query("SELECT $property AS last FROM `Utilisateur` ORDER BY ".self::primary_key." DESC LIMIT 1");
         $last = $Connexion->sql_fetch_row($query);
 
         return $last["last"];
@@ -677,8 +603,8 @@ class Exercice extends Common
     public function __clone()
     {
         $this->LoadAllChilds();
-        $this->ID_Exercice = null;
-        $this->structure['ID_Exercice'][4] = "";
+        $this->ID_Utilisateur = null;
+        $this->structure['ID_Utilisateur'][4] = "";
         $this->isNew = 1;
         $this->isToSaveOrToUpdate = 1;
         foreach ($this->structure as $field)
@@ -698,14 +624,11 @@ class Exercice extends Common
 
     public function LoadAllParents()
     {
-        if (!is_null($this->Ecriture_Exercice))
-            $this->get_Ecriture_Exercice();
-
+        
     }
 	
     public function LoadAllChilds()
     {
-        $this->get_Ecriture_Exercice();
     }
 		
     //endofclass

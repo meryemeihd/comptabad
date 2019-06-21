@@ -22,6 +22,9 @@ class authentification {
             {
                 //création de la session utilisateur 
                     $_SESSION["utilisateur"] = $Ligne;
+                    $_SESSION["ID_Utilisateur"] = $Ligne->ID_Utilisateur;
+                 
+
             }
        }
     }
@@ -32,7 +35,8 @@ class authentification {
         //suppression de l'authentification
         //permet la déconnexion
        unset($_SESSION['utilisateur']);
-        
+        unset($_SESSION['ID_Utilisateur']);
+      
     }
 }
         

@@ -63,12 +63,12 @@
 				</tr>
 				<tr>
 					 <th> <a href='/journal/regarder'><img src='https://image.flaticon.com/icons/svg/1809/1809639.svg' heigth=100  width=100  alt='' align=middle/><br/>Visualisation du journal</a>  </th>
-					 <th> <a href='index.php?p=u_compte_resultat'><img src='https://image.flaticon.com/icons/svg/1802/1802587.svg' heigth=100 width=100 alt=''/><br/>Visualisation du <br/> Compte de résultat</a>  </th>
+					 <th> <a href='/compteResultat/afficher'><img src='https://image.flaticon.com/icons/svg/1802/1802587.svg' heigth=100 width=100 alt=''/><br/>Visualisation du <br/> Compte de résultat</a>  </th>
 					
 				</tr>
 				<tr>
 					 <th> <a href='/rapprochement/observer'><img src='https://image.flaticon.com/icons/svg/138/138368.svg' heigth=100 width=100  alt=''/><br/>Rapprochement bancaire</a>  </th>
-                                                                                 <th> <a href='index.php?p=perso_action'><img src='https://image.flaticon.com/icons/svg/1802/1802607.svg' heigth=100 width=100  alt=''/> <br/> Bilan</a> </th>
+                                                                                 <th> <a href='/bilan/constater'><img src='https://image.flaticon.com/icons/svg/1802/1802607.svg' heigth=100 width=100  alt=''/> <br/> Bilan</a> </th>
 
 				</tr>
 				<tr>

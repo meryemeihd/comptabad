@@ -1,6 +1,8 @@
 
 <?php 
-
+if (isset($_SESSION["utilisateur"]))
+{
+   
 echo '
         <div class="container utilisateur">
        <form action="/utilisateur/save" method=post>';
@@ -25,27 +27,30 @@ echo '
                 <tr><td>Nouvelle fonction :</td><td><input id="pseudo2" name="pseudo2" value='.$Ligne->Login.'></td></tr><br>
                 <tr><td>Nouvelle fonction :</td><td><input id="fonction2" name="fonction2" value='.$Ligne->Fonction.'></td></tr><br>
                 <tr><td>Changement de mail :</td><td><input id="mail2" name="mail2" value='.$Ligne->Mail.'></td></tr><br>
-				
+		
+  
+        
                   <h3> <center> Changer le mot de passe </center> </h3>	
-                  <label for="mdp"> &nbsp&nbsp&nbsp&nbspMot de passe actuelle: </label>
-                  <input type="password"  placeholder="******" id="mdp" name="mdp" ><br>
                   <label for="mdpNv"> Nouveau mot de passe: </label>
                   <input type="password" placeholder="******"  name="mdpNv" ><br>
                   <label for="mdp2"> &nbsp&nbsp Confirmer le nouveau mot de passe: </label> 
                   <input type="password" placeholder="******"  name="mdp2"   > <br>
-                   
+            
 
                  
-                  <input type="submit" value="Valider">
+                  <input type="submit"  value="Valider">
+                  
+		
 	
         </fieldset>
         </form>
-				
+         		
 				
         ';
      echo "<input type=hidden name='ID_Utilisateur' value='".$Utilisateur->ID_Utilisateur."'>";
      }
      
+}
 
 ?>
 	

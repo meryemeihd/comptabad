@@ -10,11 +10,13 @@ class utilisateur
 {
  public static function personne () {
        
-      
+  
   global $Connexion;
       
-      $Query = "
-         SELECT * FROM Utilisateur";
+  
+     
+
+           $Query="SELECT * FROM Utilisateur WHERE ID_Utilisateur=  ".$_SESSION["ID_Utilisateur"]  ;
       
       global $ResultatUtilisateur;
       
@@ -22,13 +24,15 @@ class utilisateur
       
       global $Utilisateur;
         $Utilisateur = new MyORM\Utilisateur($_GET["param"][0] ?? null);
+      }
      
      
- }
+ 
  
 
 public static function save()
 {	
+     
 	$Utilisateur = new MyORM\Utilisateur($_POST["ID_Utilisateur"] ?? null);;
         
    
@@ -45,12 +49,72 @@ public static function save()
                global $Login;
                
                $Login = $Connexion->sql_query($Query);
+               
+               
+               
+            
+               $mdpNouveau=$_POST['mdpNv'];
+               $mdpNouveau2=$_POST['mdp2']; 
+               
+                  $Query="SELECT Motdepasse FROM Utilisateur WHERE ID_Utilisateur=  ".$_SESSION["ID_Utilisateur"];
+                   global $Mdp;
+                   $Mdp = $Connexion->sql_query($Query);
+               
+            //   $identifiiant= $_POST["ID_Utilisateur"];
+               
+       
+    
+          
+        if (isset($_POST["mdpNv"])&&!empty($_POST["mdpNv"]))
+        {
+          
+               $mdpNouveau=$_POST['mdpNv'];
+               $mdpNouveau2=$_POST['mdp2']; 
+               
+                if($mdpNouveau != $mdpNouveau2){
+                     echo $msg = "Les nouveaux mots de passe ne sont pas similaires.";
+               }
+               else {
+                 global $Connexion;
+                  $Query = "UPDATE Utilisateur SET Motdepasse ='$mdpNouveau2' WHERE ID_Utilisateur=  ".$_SESSION["ID_Utilisateur"];
+                  global $Changer;
+                 $Changer = $Connexion->sql_query($Query);
+                   echo "Modification réussite";
+               }
+      }
+               
+               
+          
 
-               
-// REQUETE MODIFIER MOT DE PASSE 
-               
-               
+}
 
+public  static function mdp () {
+    
+    
+        /*
+                $mdpActuelle=$_POST['mdp'];
+               $mdpNouveau=$_POST['mdpNv'];
+               $mdpNouveau2=$_POST['mdp2']; 
+               
+               $identifiiant= $_POST["ID_Utilisateur"];
+               
+               $login = $_POST['pseudo'];
+             
+                if($mdpNouveau != $mdpNouveau2){
+                     echo $msg = "Les nouveaux mots de passe ne sont pas similaires.";
+               }
+               else {
+                 global $Connexion;
+                  $Query = "UPDATE Utilisateur SET Motdepasse ='$mdpNouveau2' WHERE Login='$login' AND ID_Utilisateur='$identifiiant' ";
+                  global $Changer;
+                 $Changer = $Connexion->sql_query($Query);
+                   echo "Modification réussite";
+               }
+         * 
+         */
+               
+             
+               
 }
  
  
