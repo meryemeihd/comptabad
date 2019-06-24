@@ -41,24 +41,40 @@ echo "<form action='/facture/save' method=post>
                     echo "> ".$value->Libelle."<br>";
                 }
                 
+                
+//JOURNAL     
+                    echo"    <label for=journalt> Type du journal: </label>  <br>  ";
+
+              while  ($value = $Connexion->sql_fetch_object($ResultatJournal1)) {
+                    echo "<input type=radio  name='ID_Journal1' value='".$value->ID_Journal."'";
+                   
+                               
+                    echo "> ".$value->Libelle."<br>";                           
+                    
+                }
+           
+                    while  ($value = $Connexion->sql_fetch_object($ResultatJournal2)) {
+                    echo "<input type=radio  name='ID_Journal2' value='".$value->ID_Journal."'";
+                   
+                    
+                    
+                    echo "> ".$value->Libelle."<br>";
+    
+                }
+                
+                
  
 //COMPTE TYPE
   
    //TIERS 
-                       echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez reenseigner les informations dans la page saisir Tiers avant) </label>  <br>";
+                       echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez renseigner les informations dans la page saisir Tiers avant) </label>  <br>";
             
    echo "<select name= 'ID_Entite'>";
-              while  ($value = $Connexion->sql_fetch_object($ResultatEntite)) {
-                
-              
-                      
+              while  ($value = $Connexion->sql_fetch_object($ResultatEntite)) {        
                echo "<option value='".$value->ID_Entite."' >";
             
                  if ($value->ID_Entite)
                  {
-                      
-                        //TEST
-                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
                         echo  "$value->Nom                 " ; echo"   $value->Prenom";
                 
                  }
@@ -71,17 +87,11 @@ echo "<form action='/facture/save' method=post>
        echo " <label for=TypeCompte>  Selectionnez </label>  <br>";
             
    echo "<select name= 'ID_Compte'>";
-              while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes1)) {
-                
-              
-                      
+              while  ($value = $Connexion->sql_fetch_object($ResultatCompteLibelleCptRes1)) {        
                echo "<option value='".$value->ID_Compte."' >";
             
                  if ($value->ID_Compte)
                  {
-                      
-                        //TEST
-                        // echo "<input  name='ID_Compte' value='".$value->ID_Compte."'>";
                         echo $value->LibelleGenerique;
                 
                  }
@@ -95,7 +105,7 @@ echo "<form action='/facture/save' method=post>
                 <input type='date' id='dateRapprochement' name='dateRapprochement'   value='".$Facture->DateRapprochement." ' > <br> <br>
             
                <label for=numeroCheque> Numero de cheque:</label> 
-                <input id='Cheque'  name='Cheque'  value='".$Cheque->Numero."'> <br>
+                <input id='Cheque'  name='Cheque'  value='".$Facture->Parent_Cheque->Numero."'> <br>
 
                 
                  <input type=hidden name='ID_Cheque' value='".$Cheque->ID_Cheque."'>

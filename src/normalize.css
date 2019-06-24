@@ -184,16 +184,15 @@ textarea {
 #section2 {
   margin-bottom: 15px;
   padding: 10px;
- border-color:red;
+ border-color: red;
+  
 }
 
-//legend facture
 #depense{
   padding: 0px 3px;
   font-weight: bold;
   font-variant: small-caps;
   color: red;
-  border-color:red;
 }
 
 #section3 {
@@ -207,7 +206,7 @@ textarea {
   font-weight: bold;
   font-variant: small-caps;
   color: green;
-  border-color:red;
+
 }
 
 #section4 {

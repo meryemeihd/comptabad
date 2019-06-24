@@ -34,7 +34,30 @@ echo "<form action='/payement/save' method=post>
                     echo "> ".$value->Libelle."<br>";
                 }
                 
+     echo"    <label for=moyenpayement> Type du journal: </label>  <br>  ";
 
+                while  ($value = $Connexion->sql_fetch_object($ResultatJournal1)) {
+                    echo "<input type=radio  name='ID_Journal1' value='".$value->ID_Journal."'";
+                   
+                    
+                     
+                    echo "> ".$value->Libelle."<br>";
+                    
+                           
+                    
+                }
+                
+                    while  ($value = $Connexion->sql_fetch_object($ResultatJournal2)) {
+                    echo "<input type=radio  name='ID_Journal2' value='".$value->ID_Journal."'";
+                   
+                    
+                     
+                    echo "> ".$value->Libelle."<br>";
+                    
+                           
+                    
+                }
+                
                 
 //TIERS 
                     echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez reenseigner les informations dans la page saisir Tiers avant) </label>  <br>";

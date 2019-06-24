@@ -22,6 +22,16 @@ class payement
          $Query = "SELECT * FROM Compte WHERE Type='Recette' OR Type='Autres'";
          $ResultatCompteLibelleCptRes2= $Connexion->sql_query($Query);
          
+         
+//REQUETE JOURNAL  
+        global $ResultatJournal1;
+       $Query = "SELECT * FROM Journal WHERE ID_Journal='1'";
+       $ResultatJournal1= $Connexion->sql_query($Query);
+       
+       global $ResultatJournal2;
+       $Query = "SELECT * FROM Journal WHERE ID_Journal='2'";
+       $ResultatJournal2= $Connexion->sql_query($Query);
+       
 //REQUETE ENTITE POUR RECUPERER ID_ENTITE ET LE METTRE DANS PIECE ET AFFICHER NOM ET PRENOM DANS  LA VUE 
        global $ResultatEntite;
        $Query = "SELECT * FROM Entite";
@@ -112,10 +122,12 @@ class payement
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Montant($_POST['Montant']);
          //insertion de lmd2 DANS ECRITURE1
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
+         //clé etrangère INSERTION DE ID_COMPTE DE ECRITURE1
+       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
        //INSERTION DE DATE DE RAPPROCHEMENT DANS ECRITURE1
         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']); 
        //INSERTION CLE ETRANGERE DE ID_Compte DANS ECRITURE1
-         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
+        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal1']);
          
          
            //insertion de date de Ecriture2
@@ -128,6 +140,8 @@ class payement
           $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
             //clé etrangère INSERTION DE DATERAPPROCHEMENT DE ECRITURE2
             $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_DateRapprochement($_POST['dateRapprochement']);
+            
+        $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Journal($_POST['ID_Journal2']);
         
         //sert a afficher
          /*

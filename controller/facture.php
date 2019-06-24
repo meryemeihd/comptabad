@@ -10,7 +10,16 @@ class facture {
        $Query = "SELECT * FROM ModePayement";
        $ResultatModePayement= $Connexion->sql_query($Query);
        
-
+//
+        global $ResultatJournal1;
+       $Query = "SELECT * FROM Journal WHERE ID_Journal='1'";
+       $ResultatJournal1= $Connexion->sql_query($Query);
+       
+       global $ResultatJournal2;
+       $Query = "SELECT * FROM Journal WHERE ID_Journal='2'";
+       $ResultatJournal2= $Connexion->sql_query($Query);
+       
+       
 //REQUETE DE ENTITE PR PERMETTRE D AFFICHER NOM ET PRENOM LIE ENTITE ET PIECE 
         global $ResultatEntite;
        $Query = "SELECT * FROM Entite";
@@ -62,10 +71,14 @@ class facture {
           
              //permet d'avoir la clé étrangère
                 $Facture->ID_ModePayement=$_POST["ID_ModePayement"] ;
-                $Facture->ID_Compte=$_POST["ID_Compte"] ;                                                   
+               // $Facture->ID_Compte=$_POST["ID_Compte"] ;                                                   
 
          //attribut Numero à Cheque
-        $Cheque->Numero=$_POST['Cheque'];
+       
+         if (empty($Facture->ID_Cheque))
+             $Facture->Parent_Cheque = new MyORM\Cheque();
+         //INSERTION DU NUMERO DE CHEQUE DANS CHEQUE 
+         $Facture->Parent_Cheque->Numero = $_POST['Cheque'];
      
            
        if (empty($Facture->Piece_Facture))
@@ -115,6 +128,10 @@ class facture {
        //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
        
+       
+       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal1']);
+       
+       
         //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE2
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
          //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE2
@@ -126,6 +143,9 @@ class facture {
        //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE2
         $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
        
+        
+        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Journal($_POST['ID_Journal2']);
+       
        
        
         
@@ -136,7 +156,6 @@ class facture {
                 $Facture->save(); 
                 
                 //sauvegarde cheque 
-                $Cheque->save();
       
                //Api
             
