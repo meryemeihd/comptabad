@@ -46,25 +46,18 @@ public static function save()
         
                $Query = "UPDATE Utilisateur SET Login = '$pseudo2', Fonction= '$fonction2', Mail='$mail2' ";
                
-               global $Login;
+               global $Change;
                
-               $Login = $Connexion->sql_query($Query);
-               
-               
-               
-            
+               $Change= $Connexion->sql_query($Query);
+              
                $mdpNouveau=$_POST['mdpNv'];
                $mdpNouveau2=$_POST['mdp2']; 
                
                   $Query="SELECT Motdepasse FROM Utilisateur WHERE ID_Utilisateur=  ".$_SESSION["ID_Utilisateur"];
                    global $Mdp;
                    $Mdp = $Connexion->sql_query($Query);
-               
-            //   $identifiiant= $_POST["ID_Utilisateur"];
-               
-       
-    
-          
+      
+                   
         if (isset($_POST["mdpNv"])&&!empty($_POST["mdpNv"]))
         {
           
@@ -88,33 +81,7 @@ public static function save()
 
 }
 
-public  static function mdp () {
-    
-    
-        /*
-                $mdpActuelle=$_POST['mdp'];
-               $mdpNouveau=$_POST['mdpNv'];
-               $mdpNouveau2=$_POST['mdp2']; 
-               
-               $identifiiant= $_POST["ID_Utilisateur"];
-               
-               $login = $_POST['pseudo'];
-             
-                if($mdpNouveau != $mdpNouveau2){
-                     echo $msg = "Les nouveaux mots de passe ne sont pas similaires.";
-               }
-               else {
-                 global $Connexion;
-                  $Query = "UPDATE Utilisateur SET Motdepasse ='$mdpNouveau2' WHERE Login='$login' AND ID_Utilisateur='$identifiiant' ";
-                  global $Changer;
-                 $Changer = $Connexion->sql_query($Query);
-                   echo "Modification réussite";
-               }
-         * 
-         */
-               
-             
-               
+                                          
 }
  
  

@@ -112,24 +112,34 @@ class payement
             //ajout Ecriture1
             $Payement->Piece_Payement[0]->add_Ecriture_Piece($Ecriture1);
             //ajout Ecriture1
-            $Payement->Piece_Payement[0]->add_Ecriture_Piece($Ecriture2);
+         //   $Payement->Piece_Payement[0]->add_Ecriture_Piece($Ecriture2);
        }
        
        //insertion de Ecriture1 et Ecriture2
        //insertion de date de Ecriture1
+       
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Date($_POST['Date']);
            //insertion de montant de Ecriture1
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Montant($_POST['Montant']);
          //insertion de lmd2 DANS ECRITURE1
        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
          //clé etrangère INSERTION DE ID_COMPTE DE ECRITURE1
-       $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
+       $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
        //INSERTION DE DATE DE RAPPROCHEMENT DANS ECRITURE1
         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']); 
        //INSERTION CLE ETRANGERE DE ID_Compte DANS ECRITURE1
+           if (!empty($_POST['ID_Journal1']))
+        {
         $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal1']);
+        }
+         if (!empty($_POST['ID_Journal2']))
+        {
          
+        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_Montant(-$_POST['Montant']);
+        $Payement->Piece_Payement[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal2']);
+        }
          
+     /*
            //insertion de date de Ecriture2
          $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
           //insertion de montant DANS ECRITURE de Ecriture2
@@ -143,6 +153,8 @@ class payement
             
         $Payement->Piece_Payement[0]->Ecriture_Piece[1]->set_ID_Journal($_POST['ID_Journal2']);
         
+      * 
+      */
         //sert a afficher
          /*
          echo "<pre>";

@@ -42,11 +42,62 @@ echo "<form action='/facture/save' method=post>
                 }
                 
                 
-//JOURNAL     
+                
+                
+                
+                
+                /*
+                
+                  echo"    <label for=journalt> Type du journal: </label>  <br>  ";
+
+              while  ($value = $Connexion->sql_fetch_object($ResultatJournal)) {
+                    echo "<input type=radio  name='ID_Journal' value='".$value->ID_Journal."'";
+
+                              while  ($value = $Connexion->sql_fetch_object($ResultatJournal1)) {
+       //    echo "<input type=radio  name='ID_Journal1' value='".$value->ID_Journal."'";
+                   
+                               
+                    echo " >".$value->Libelle."";                           
+                    
+                }
+           
+                    while  ($value = $Connexion->sql_fetch_object($ResultatJournal2)) {
+          //      echo "<input type=radio  name='ID_Journal2' value='".$value->ID_Journal."'";
+                   
+                    
+                    
+                echo "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp".$value->Libelle."";
+    
+                }
+                    
+                   
+                               echo " checked";   
+                 echo "> ".$value->Libelle."<br>";     
+                            
+                    if ($value->Libelle=='Vente' )
+                    {
+                        echo 'salut';
+                          echo " <input type=hidden name='ID_Journal1'>";
+                    }
+                     if ($value->Libelle=='Achat')
+                      {
+                        
+                           echo " <input type=hidden name='ID_Journal2'>";
+                    }
+                      * 
+                      */
+
+                 
+            
+                   echo '<br>';
+//JOURNAL    
+                
+                
+                 
                     echo"    <label for=journalt> Type du journal: </label>  <br>  ";
 
               while  ($value = $Connexion->sql_fetch_object($ResultatJournal1)) {
-                    echo "<input type=radio  name='ID_Journal1' value='".$value->ID_Journal."'";
+                    echo "<input type=checkbox  name='ID_Journal1' value='".$value->ID_Journal."'";
                    
                                
                     echo "> ".$value->Libelle."<br>";                           
@@ -54,20 +105,20 @@ echo "<form action='/facture/save' method=post>
                 }
            
                     while  ($value = $Connexion->sql_fetch_object($ResultatJournal2)) {
-                    echo "<input type=radio  name='ID_Journal2' value='".$value->ID_Journal."'";
+                    echo "<input type=checkbox  name='ID_Journal2' value='".$value->ID_Journal."'";
                    
                     
                     
                     echo "> ".$value->Libelle."<br>";
     
                 }
-                
+
                 
  
 //COMPTE TYPE
   
    //TIERS 
-                       echo " <label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez renseigner les informations dans la page saisir Tiers avant) </label>  <br>";
+                       echo " <br><label for=TypeCompte>  Tiers (si vous ne trouvez pas le nom de la personne ou compagnie veuillez renseigner les informations dans la page saisir Tiers avant) </label>  <br>";
             
    echo "<select name= 'ID_Entite'>";
               while  ($value = $Connexion->sql_fetch_object($ResultatEntite)) {        

@@ -11,6 +11,10 @@ class facture {
        $ResultatModePayement= $Connexion->sql_query($Query);
        
 //
+             global $ResultatJournal;
+       $Query = "SELECT * FROM Journal ";
+       $ResultatJournal= $Connexion->sql_query($Query);  
+       
         global $ResultatJournal1;
        $Query = "SELECT * FROM Journal WHERE ID_Journal='1'";
        $ResultatJournal1= $Connexion->sql_query($Query);
@@ -110,12 +114,12 @@ class facture {
             //ajout ecriture1
             $Facture->Piece_Facture[0]->add_Ecriture_Piece($Ecriture1);
             //ajout ecriture2 
-            $Facture->Piece_Facture[0]->add_Ecriture_Piece($Ecriture2);
+          //  $Facture->Piece_Facture[0]->add_Ecriture_Piece($Ecriture2);
        }
        
        
        //insertion ecriture 1 et ecriture 2
-       
+
           //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Date($_POST['Date']);
           //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE1
@@ -124,14 +128,24 @@ class facture {
         $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']);
       
          //INSERTION DE DATE ACTUELLE DANS ECRITURE AVEC ECRITURE1
-       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
+      $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_lmd(date("Y-m-d H:i:s"));
        //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Compte($_POST['ID_Compte']);
        
-       
+       if (!empty($_POST['ID_Journal1']))
+        {
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal1']);
        
-       
+        }
+         if (!empty($_POST['ID_Journal2']))
+         {
+             $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal2']);
+              $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Montant(-$_POST['PrixTTC']);
+         }
+
+        /*
+                 if (!empty($_POST['ID_Journal2']))
+        {
         //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE2
        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_Date($_POST['Date']);
          //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE2
@@ -139,12 +153,15 @@ class facture {
        //INSERTION DE DATE RAPPROCHEMENT DANS ECRITURE AVEC ECRITURE2
         $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_DateRapprochement($_POST['dateRapprochement']);
        //INSERTION DE LA DATE ACTUELLE DANS ECRITURE AVEC ECRITURE2
-       $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
+     $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_lmd(date("Y-m-d H:i:s"));
        //INSERTION DE ID COMPTE DANS ECRITURE AVEC ECRITURE2
         $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Compte($_POST['ID_Compte']);
        
+         $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Journal($_POST['ID_Journal2']);
+        }
+         * 
+         */
         
-        $Facture->Piece_Facture[0]->Ecriture_Piece[1]->set_ID_Journal($_POST['ID_Journal2']);
        
        
        

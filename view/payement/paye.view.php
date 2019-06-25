@@ -37,18 +37,16 @@ echo "<form action='/payement/save' method=post>
      echo"    <label for=moyenpayement> Type du journal: </label>  <br>  ";
 
                 while  ($value = $Connexion->sql_fetch_object($ResultatJournal1)) {
-                    echo "<input type=radio  name='ID_Journal1' value='".$value->ID_Journal."'";
+                    echo "<input type=checkbox  name='ID_Journal1' value='".$value->ID_Journal."'";
                    
                     
                      
                     echo "> ".$value->Libelle."<br>";
                     
-                           
-                    
                 }
                 
                     while  ($value = $Connexion->sql_fetch_object($ResultatJournal2)) {
-                    echo "<input type=radio  name='ID_Journal2' value='".$value->ID_Journal."'";
+                    echo "<input type=checkbox  name='ID_Journal2' value='".$value->ID_Journal."'";
                    
                     
                      
