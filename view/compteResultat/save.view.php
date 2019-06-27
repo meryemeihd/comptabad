@@ -1,4 +1,3 @@
-
 <table id=MaTable class=tabcenter>
 <tr> 
        <td> <center> Depenses <center></td>
@@ -7,28 +6,23 @@
        <td><center>  Montant</center> </td>  
        </tr>
 
-<?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<?php 
+        
 echo "
     <center> <h1> Visualisation du compte résultat </h1> </center> ";
 ?>
        <?php
- echo "<form method='post' action='/compteResultat/save'>
-                <label for=date> Date:</label> 
-                <input type='date' id='date' name='DateEcriture' value='" .$Ecriture->Date." ' ><br> 
-                 <button type=submit>Valider</button>";
+
                  
 
+  
+    
 
         echo  "<tr>"
         . "<td  bgcolor=#7EE7EE><center>  60-Achats </center></td>"
         . "<td  bgcolor=#7EE7EE><center>";while ($Ligne = $Connexion->sql_fetch_object($Achats)) {echo $Ligne->MontantEcriture;  
-        if (empty($Ligne->MontantEcriture)) { echo ("0"); } } echo" </center></td>"
+        if (empty($Ligne->MontantEcriture)) { echo ("0"); } }  echo " </center></td>"
       . "<td  bgcolor=#7EE7EE><center> 70-Vente de produis finis, prestations de services, marchandises </center></td>"
       . "<td  bgcolor=#7EE7EE><center>";while ($Ligne = $Connexion->sql_fetch_object($Vente)) {echo $Ligne->MontantEcriture;  
         if (empty($Ligne->MontantEcriture)) { echo ("0"); } } echo" </center> </td>"
@@ -418,22 +412,15 @@ echo
         ."<td bgcolor=#7EE7EE><center>";while ($Ligne = $Connexion->sql_fetch_object($TOTALPRODUITS)) {echo $Ligne->MontantEcriture;
         if (empty($Ligne->MontantEcriture)) { echo ("0"); } } echo"</center> </td>"
         . "</tr>";
+  
         
-        echo "<form>";
-    
+
     ?>
    
       
        <?php
-      /* 
-         echo "
-                <form method='post' action='compteResultat/save'>
-                <label for=date> Date:</label> 
-                <input type='date' id='date' name='Date' value='".$Ecriture->Date." ' ><br> 
-                 <button type=submit>Valider</button>"
-        ;
-       * 
-       */
+
+         echo  "<a href='/compteResultat/afficher'><button type=submit>Retour</button> </a>";
          ?>
 
 </table>
@@ -445,3 +432,6 @@ echo
               
                 
                 
+
+
+

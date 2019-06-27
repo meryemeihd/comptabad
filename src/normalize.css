@@ -249,6 +249,7 @@ textarea {
   color: #95D9ED; 
 }
 
+
 td{
     border:1px solid black;
     padding:10px 15px;   
@@ -259,6 +260,12 @@ table {
 }
 
 
-#bla1 {
-    text-decoration: underline;
+#MaTable {
+ width: 100%;
+ padding: 2px; 
+ border-spacing: 2px; 
+}
+.tabcenter{
+   margin-left:auto;
+   margin-right:auto;
 }

@@ -21,6 +21,11 @@ class bilan {
  public static function  save () {
      
      
+     $Day;
+     if (isset($_POST["DateExercice"]))
+     {
+         
+     }    
  }
     
 }

@@ -54,16 +54,11 @@ class facture {
  
  public static function save() {
      
+     
+         $Cheque =new MyORM\Cheque($_POST["ID_Cheque"]);
      //creation Facture
              $Facture = new MyORM\Facture($_POST["ID_Facture"]) ;
-        
-             
-         //creation Cheque
-           $Cheque =new MyORM\Cheque($_POST["ID_Cheque"]);
-             
-           
-    
-             
+               
              //element facture
              $Facture->NumeroFacture=$_POST['NumeroFacture'];
              $Facture ->Date=$_POST['Date'];
@@ -123,7 +118,7 @@ class facture {
           //INSERTION DE DATE DANS ECRITURE AVEC ECRITURE1
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Date($_POST['Date']);
           //INSERTION DE MONTANT DANS ECRITURE AVEC ECRITURE1
-       $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Montant($_POST['PrixTTC']);
+       
        //INSERTION DATE RAPPROCHEMENT DS ECRITURE AVEC ECRITURE1
         $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_DateRapprochement($_POST['dateRapprochement']);
       
@@ -135,7 +130,7 @@ class facture {
        if (!empty($_POST['ID_Journal1']))
         {
        $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_ID_Journal($_POST['ID_Journal1']);
-       
+         $Facture->Piece_Facture[0]->Ecriture_Piece[0]->set_Montant($_POST['PrixTTC']);       
         }
          if (!empty($_POST['ID_Journal2']))
          {

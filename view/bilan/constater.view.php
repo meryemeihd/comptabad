@@ -7,6 +7,14 @@ echo "<form action='/bilan/save' method='post'> ";
          {
               echo "   <center> <h1> Bilan du $Ligne->DateDebut au $Ligne->DateFin</h1> </center>
                   
+               <label for=date> Date début:</label> 
+                <input type='DateDebut' id='DateDebut' name='DateDebut' value='".$Ligne->DateDebut." ' >
+                 
+                 <label for=date> Date fin:</label> 
+                <input type='DateFin' id='DateFin' name='DateFin' value='".$Ligne->DateFin." ' >
+                 
+                 <button type=submit name=DateExercice>Valider</button>
+                  
 </form> 
 ";
          }
