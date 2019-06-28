@@ -1,4 +1,6 @@
-
+<?php
+echo $DateDebut." ".$DateFin;
+?>
 <table id=MaTable class=tabcenter>
 <tr> 
        <td> <center> Depenses <center></td>
@@ -18,9 +20,11 @@ echo "
     <center> <h1> Visualisation du compte résultat </h1> </center> ";
 ?>
        <?php
- echo "<form method='post' action='/compteResultat/save'>
-                <label for=date> Date:</label> 
-                <input type='date' id='date' name='DateEcriture' value='" .$Ecriture->Date." ' ><br> 
+ echo "<form method='post' action='/compteResultat/afficher'>
+                <label for=date> Date Début:</label> 
+                <input type='date' id='date' name='DateDebut' value='".$DateDebut."'> <br> 
+                    <label for=date> Date Fin:</label> 
+                <input type='date' id='date' name='DateFin' value='" .$DateFin."'><br> 
                  <button type=submit>Valider</button>";
                  
 
